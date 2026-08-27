@@ -118,6 +118,22 @@
     renderLinks("[data-links]", linksData.links);
     hideSection("redes", (linksData.links ?? []).length > 0);
 
+    /* Próximas apresentações (reutiliza a Agenda Core, sem duplicar o sistema) */
+    try {
+      const agenda = await window.OndaShows.loadShows();
+      const nextShows = agenda.upcoming.filter((show) => show.status !== "cancelled").slice(0, 3);
+      const list = document.querySelector("[data-next-dates]");
+      if (list) {
+        list.innerHTML = nextShows
+          .map((show) => `<li><strong>${escapeHTML(window.OndaShows.formatShortDate(show.date))}</strong> · ${escapeHTML([show.city, show.state].filter(Boolean).join(", "))}${show.title ? ` — ${escapeHTML(show.title)}` : ""}</li>`)
+          .join("");
+        list.hidden = nextShows.length === 0;
+      }
+      hideSection("proximas", nextShows.length > 0);
+    } catch (error) {
+      console.warn("[Onda] Agenda indisponível para o release.", error);
+    }
+
     /* SEO básico: sincroniza <title> e metadados com os dados */
     document.title = `${band.name} — Release · ${band.genre} · ${band.city}, ${band.state}`;
     const description = `${band.name} — ${releaseData.headline}: biografia, integrantes, discografia, destaques e contratação. (Conteúdo demonstrativo do Onda Artist Kit.)`;

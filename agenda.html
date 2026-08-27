@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Agenda de shows da Banda Exemplo — banda fictícia de rock independente de Brasília criada para demonstrar o Onda Artist Kit: próximos shows, ingressos, localização e histórico.">
+    <meta name="theme-color" content="#0e1016">
+    <title>Agenda — Banda Exemplo · Rock independente · Brasília, DF</title>
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <link rel="stylesheet" href="src/css/main.css">
+    <script src="src/js/content.js" defer></script>
+    <script src="src/js/main.js" defer></script>
+    <script src="src/js/shows.js" defer></script>
+    <script src="src/components/show-card.js" defer></script>
+    <script src="src/js/agenda.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#agenda-conteudo">Pular para o conteúdo principal</a>
+
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a class="brand" href="index.html">
+                <span class="brand__logo">
+                    <img class="brand__img" data-logo-img alt="" hidden>
+                    <svg class="brand__mark" data-logo-fallback viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+                        <defs>
+                            <linearGradient id="brand-grad" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#8b5cf6"/>
+                                <stop offset="1" stop-color="#22d3ee"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M12 40c6-14 12-14 18 0s12 14 18 0" fill="none" stroke="url(#brand-grad)" stroke-width="7" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span class="brand__name" data-band-name>Banda Exemplo</span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" data-menu-toggle>
+                <span class="visually-hidden">Abrir menu</span>
+                <span class="nav-toggle__bars" aria-hidden="true">
+                    <span class="nav-toggle__bar"></span>
+                    <span class="nav-toggle__bar"></span>
+                    <span class="nav-toggle__bar"></span>
+                </span>
+            </button>
+
+            <nav class="site-nav" id="menu-principal" aria-label="Navegação principal" data-open="false">
+                <ul class="nav__list" role="list">
+                    <li><a class="nav__link" href="index.html">Início</a></li>
+                    <li><a class="nav__link" href="release.html">Release</a></li>
+                    <li><a class="nav__link" href="agenda.html" aria-current="page">Agenda</a></li>
+                    <li><a class="nav__link" href="index.html#links">Links</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="agenda-conteudo" tabindex="-1">
+        <section class="hero hero--compact" id="inicio">
+            <div class="container hero__inner">
+                <p class="hero__eyebrow" data-release-eyebrow>Agenda · Brasília, DF · Rock independente</p>
+                <h1 data-band-name>Banda Exemplo</h1>
+                <p class="hero__tagline">Datas confirmadas da banda — ingressos, localização e histórico de apresentações.</p>
+            </div>
+        </section>
+
+        <section class="section section--alt" id="proximos" aria-labelledby="titulo-proximos">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__eyebrow">Em cartaz</p>
+                    <h2 id="titulo-proximos">Próximos shows</h2>
+                </header>
+                <div class="grid" data-upcoming>
+                    <article class="card show-card" data-show-id="show-001">
+                        <p class="event-card__date"><time datetime="2026-09-12"><span class="event-card__day">12</span><span class="event-card__month">set</span></time></p>
+                        <div class="show-card__body">
+                            <div class="show-card__head">
+                                <h3 class="card__title">Festival Noite Alta</h3>
+                                <span class="badge badge--confirmed">Confirmado</span>
+                            </div>
+                            <p class="show-card__when"><time datetime="2026-09-12T20:00:00">Sábado, 12 de setembro de 2026 · 20:00–21:00</time></p>
+                            <p class="card__meta">Centro Cultural Vilanova · Brasília - DF</p>
+                            <p class="show-card__address">Setor de Clubes Esportivos Sul, Brasília, DF</p>
+                            <p class="show-card__desc">Palco alternativo do festival, com a nova turnê do EP “Maré Alta”. (Evento demonstrativo.)</p>
+                            <div class="show-card__actions">
+                                <a class="btn btn--ghost btn--sm" href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer">Ver no mapa <span aria-hidden="true">↗</span></a>
+                                <a class="btn btn--primary btn--sm" href="https://www.sympla.com.br/" target="_blank" rel="noopener noreferrer">Ingressos <span aria-hidden="true">↗</span></a>
+                                <button class="btn btn--ghost btn--sm" type="button" data-ics="show-001">Adicionar ao calendário</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <p class="agenda-empty" data-empty-upcoming hidden>Nenhum show agendado no momento. Acompanhe as redes do artista para novidades.</p>
+            </div>
+        </section>
+        <section class="section" id="anteriores" aria-labelledby="titulo-anteriores">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__eyebrow">Histórico</p>
+                    <h2 id="titulo-anteriores">Shows anteriores</h2>
+                </header>
+                <div class="grid" data-past>
+                    <article class="card show-card" data-show-id="show-005">
+                        <p class="event-card__date"><time datetime="2026-06-20"><span class="event-card__day">20</span><span class="event-card__month">jun</span></time></p>
+                        <div class="show-card__body">
+                            <div class="show-card__head">
+                                <h3 class="card__title">Centro Cultural Marta</h3>
+                                <span class="badge badge--confirmed">Confirmado</span>
+                            </div>
+                            <p class="show-card__when"><time datetime="2026-06-20T19:30:00">Sábado, 20 de junho de 2026 · 19:30</time></p>
+                            <p class="card__meta">Centro Cultural Marta · São Paulo - SP</p>
+                            <p class="show-card__desc">Apresentação passada na capital paulista. (Evento demonstrativo.)</p>
+                            <div class="show-card__actions">
+                                <a class="btn btn--ghost btn--sm" href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer">Ver no mapa <span aria-hidden="true">↗</span></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container site-footer__inner">
+            <p><small>© <span data-year>2026</span> Banda Exemplo — agenda de demonstração com banda fictícia.</small></p>
+            <p><small>Feito com <a href="https://github.com/Onda-Noturna/onda-artist-kit">Onda Artist Kit</a></small></p>
+        </div>
+    </footer>
+</body>
+</html>

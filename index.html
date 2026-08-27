@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="src/css/main.css">
     <script src="src/js/main.js" defer></script>
     <script src="src/js/content.js" defer></script>
+    <script src="src/js/shows.js" defer></script>
+    <script src="src/components/show-card.js" defer></script>
     <script src="src/js/home.js" defer></script>
 </head>
 <body>
@@ -47,7 +49,7 @@
                     <li><a class="nav__link" href="index.html" aria-current="page">Início</a></li>
                     <li><a class="nav__link" href="#sobre">Sobre</a></li>
                     <li><a class="nav__link" href="release.html">Release</a></li>
-                    <li><a class="nav__link" href="#agenda">Agenda</a></li>
+                    <li><a class="nav__link" href="agenda.html">Agenda</a></li>
                     <li><a class="nav__link" href="#links">Links</a></li>
                 </ul>
             </nav>
@@ -124,49 +126,31 @@
             <div class="container">
                 <header class="section__header">
                     <p class="section__eyebrow">Agenda</p>
-                    <h2 id="titulo-agenda">Próximos shows</h2>
-                    <p>Datas confirmadas da rodada de apresentações de 2026.</p>
+                    <h2 id="titulo-agenda">Próximo show</h2>
                 </header>
-                <div class="grid grid--3">
-                    <article class="card event-card">
-                        <p class="event-card__date">
-                            <time datetime="2026-09-12T20:00:00-03:00">
-                                <span class="event-card__day">12</span>
-                                <span class="event-card__month">set</span>
-                            </time>
-                        </p>
-                        <div class="event-card__body">
-                            <h3 class="card__title">Festival Noite Alta</h3>
-                            <p>Centro Cultural Vilanova</p>
-                            <p class="card__meta">Brasília, DF · 20h</p>
+                <div data-next-show>
+                    <article class="card show-card" data-show-id="show-001">
+                        <p class="event-card__date"><time datetime="2026-09-12"><span class="event-card__day">12</span><span class="event-card__month">set</span></time></p>
+                        <div class="show-card__body">
+                            <div class="show-card__head">
+                                <h3 class="card__title">Festival Noite Alta</h3>
+                                <span class="badge badge--confirmed">Confirmado</span>
+                            </div>
+                            <p class="show-card__when"><time datetime="2026-09-12T20:00:00">Sábado, 12 de setembro de 2026 · 20:00–21:00</time></p>
+                            <p class="card__meta">Centro Cultural Vilanova · Brasília - DF</p>
+                            <p class="show-card__address">Setor de Clubes Esportivos Sul, Brasília, DF</p>
+                            <p class="show-card__desc">Palco alternativo do festival, com a nova turnê do EP “Maré Alta”. (Evento demonstrativo.)</p>
+                            <div class="show-card__actions">
+                                <a class="btn btn--ghost btn--sm" href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer">Ver no mapa <span aria-hidden="true">↗</span></a>
+                                <a class="btn btn--primary btn--sm" href="https://www.sympla.com.br/" target="_blank" rel="noopener noreferrer">Ingressos <span aria-hidden="true">↗</span></a>
+                                <button class="btn btn--ghost btn--sm" type="button" data-ics="show-001">Adicionar ao calendário</button>
+                            </div>
                         </div>
                     </article>
-                    <article class="card event-card">
-                        <p class="event-card__date">
-                            <time datetime="2026-10-03T21:30:00-03:00">
-                                <span class="event-card__day">03</span>
-                                <span class="event-card__month">out</span>
-                            </time>
-                        </p>
-                        <div class="event-card__body">
-                            <h3 class="card__title">Sala Subsolo</h3>
-                            <p>Setor Bueno</p>
-                            <p class="card__meta">Goiânia, GO · 21h30</p>
-                        </div>
-                    </article>
-                    <article class="card event-card">
-                        <p class="event-card__date">
-                            <time datetime="2026-10-24T19:00:00-03:00">
-                                <span class="event-card__day">24</span>
-                                <span class="event-card__month">out</span>
-                            </time>
-                        </p>
-                        <div class="event-card__body">
-                            <h3 class="card__title">Bar Onda</h3>
-                            <p>Asa Sul</p>
-                            <p class="card__meta">Brasília, DF · 19h</p>
-                        </div>
-                    </article>
+                </div>
+                <p class="agenda-empty" data-next-show-empty hidden>Nenhum show agendado no momento — acompanhe as redes do artista para novidades.</p>
+                <div class="hero__actions">
+                    <a class="btn btn--ghost" href="agenda.html">Ver agenda completa</a>
                 </div>
             </div>
         </section>

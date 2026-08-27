@@ -54,6 +54,24 @@
 
     /* Redes e links */
     renderLinks("[data-links]", linksData.links);
+
+    /* Próximo show (reutiliza a Agenda Core + ShowCard) */
+    if (window.OndaShows && window.OndaShowCard) {
+      const agenda = await window.OndaShows.loadShows();
+      const nextShow = agenda.upcoming.find((show) => show.status !== "cancelled");
+      const container = document.querySelector("[data-next-show]");
+      const emptyMessage = document.querySelector("[data-next-show-empty]");
+      if (container) {
+        if (nextShow) {
+          container.innerHTML = window.OndaShowCard.render(nextShow);
+        } else {
+          container.hidden = true;
+          if (emptyMessage) {
+            emptyMessage.hidden = false;
+          }
+        }
+      }
+    }
   };
 
   hydrate().catch((error) => {

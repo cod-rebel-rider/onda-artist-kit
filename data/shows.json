@@ -1,0 +1,83 @@
+{
+  "shows": [
+    {
+      "id": "show-003",
+      "title": "Bar Onda",
+      "date": "2026-11-14",
+      "startTime": "19:00",
+      "endTime": "20:30",
+      "venue": "Bar Onda",
+      "city": "Brasília",
+      "state": "DF",
+      "country": "BR",
+      "description": "Residência mensal da banda: uma noite de repertório novo e clássicos da casa. (Evento demonstrativo.)",
+      "status": "postponed",
+      "originalDate": "2026-09-26"
+    },
+    {
+      "id": "show-001",
+      "title": "Festival Noite Alta",
+      "date": "2026-09-12",
+      "startTime": "20:00",
+      "endTime": "21:00",
+      "venue": "Centro Cultural Vilanova",
+      "city": "Brasília",
+      "state": "DF",
+      "country": "BR",
+      "description": "Palco alternativo do festival, com a nova turnê do EP “Maré Alta”. (Evento demonstrativo.)",
+      "address": "Setor de Clubes Esportivos Sul, Brasília, DF",
+      "mapUrl": "https://www.openstreetmap.org/",
+      "ticketUrl": "https://www.sympla.com.br/",
+      "status": "confirmed"
+    },
+    {
+      "id": "show-005",
+      "title": "Centro Cultural Marta",
+      "date": "2026-06-20",
+      "startTime": "19:30",
+      "venue": "Centro Cultural Marta",
+      "city": "São Paulo",
+      "state": "SP",
+      "country": "BR",
+      "description": "Apresentação passada na capital paulista. (Evento demonstrativo.)",
+      "mapUrl": "https://www.openstreetmap.org/",
+      "status": "confirmed"
+    },
+    {
+      "id": "show-002",
+      "title": "Sala Subsolo",
+      "date": "2026-10-03",
+      "startTime": "21:30",
+      "venue": "Sala Subsolo",
+      "city": "Goiânia",
+      "state": "GO",
+      "country": "BR",
+      "description": "Noite de formatos curtos, com três bandas da cena independente. (Evento demonstrativo.)",
+      "mapUrl": "https://www.openstreetmap.org/",
+      "status": "confirmed"
+    },
+    {
+      "id": "show-006",
+      "title": "Cerrado Sessions",
+      "date": "2026-05-09",
+      "startTime": "18:00",
+      "venue": "Estúdio Cerrado",
+      "city": "Brasília",
+      "state": "DF",
+      "country": "BR",
+      "status": "confirmed"
+    },
+    {
+      "id": "show-004",
+      "title": "Festival Inverno Alto",
+      "date": "2026-12-05",
+      "startTime": "22:00",
+      "venue": "Parque da Cidade",
+      "city": "São Paulo",
+      "state": "SP",
+      "country": "BR",
+      "description": "Palco eletrônico do festival. (Evento demonstrativo.)",
+      "status": "cancelled"
+    }
+  ]
+}
