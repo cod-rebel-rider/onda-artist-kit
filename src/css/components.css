@@ -580,3 +580,15 @@
   border-radius: var(--radius-lg);
   text-align: center;
 }
+
+/* Status da agenda (carregando / erro amigável / fallback) */
+.agenda-status {
+  margin-bottom: var(--space-md);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.agenda-status--error {
+  color: var(--color-accent-2);
+}

@@ -11,6 +11,9 @@
     <script src="src/js/content.js" defer></script>
     <script src="src/js/main.js" defer></script>
     <script src="src/js/shows.js" defer></script>
+    <script src="src/js/sources/local.js" defer></script>
+    <script src="src/js/sources/google-icalendar.js" defer></script>
+    <script src="src/js/data.js" defer></script>
     <script src="src/components/show-card.js" defer></script>
     <script src="src/js/agenda.js" defer></script>
 </head>
@@ -70,6 +73,8 @@
                     <p class="section__eyebrow">Em cartaz</p>
                     <h2 id="titulo-proximos">Próximos shows</h2>
                 </header>
+                <p class="agenda-status" data-agenda-status role="status" aria-live="polite" hidden>Carregando agenda...</p>
+                <p class="field__hint" data-google-indicator hidden>Agenda atualizada pelo Google Calendar.</p>
                 <div class="grid" data-upcoming>
                     <article class="card show-card" data-show-id="show-001">
                         <p class="event-card__date"><time datetime="2026-09-12"><span class="event-card__day">12</span><span class="event-card__month">set</span></time></p>

@@ -83,7 +83,8 @@
       mapUrl: raw.mapUrl ?? "",
       ticketUrl: raw.ticketUrl ?? "",
       status: "confirmed",
-      originalDate: null
+      originalDate: null,
+      recurring: Boolean(raw.recurring) /* eventos recorrentes (ex.: Google Calendar) */
     };
 
     if (raw.startTime) {
@@ -182,24 +183,25 @@
 
   const statusLabel = (status) => STATUS_LABELS[status] ?? STATUS_LABELS.confirmed;
 
-  let cache = null;
+  let allShows = [];
 
-  /* Carrega e prepara a agenda (com cache por carregamento de página). */
-  const loadShows = async (url = "data/shows.json") => {
-    if (cache) {
-      return cache;
-    }
-    const data = await window.OndaContent.loadJSON(url);
-    const shows = normalizeShows(data.shows);
-    const classified = classifyShows(shows);
-    cache = { ...classified, all: shows };
-    return cache;
+  /* Registra os eventos carregados (qualquer fonte) para o ShowCard
+     resolver ids na exportação .ics. */
+  const setAll = (events) => {
+    allShows = events ?? [];
   };
 
-  const getById = (id) => cache?.all.find((show) => show.id === id) ?? null;
+  /* Carrega e normaliza diretamente data/shows.json (fonte local padrão). */
+  const loadLocalShows = async () => {
+    const data = await window.OndaContent.loadJSON("data/shows.json");
+    return normalizeShows(data.shows ?? []);
+  };
+
+  const getById = (id) => allShows.find((show) => show.id === id) ?? null;
 
   window.OndaShows = {
-    loadShows,
+    setAll,
+    loadLocalShows,
     normalizeShows,
     classifyShows,
     parseDate,

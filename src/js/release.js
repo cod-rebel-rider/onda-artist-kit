@@ -118,10 +118,11 @@
     renderLinks("[data-links]", linksData.links);
     hideSection("redes", (linksData.links ?? []).length > 0);
 
-    /* Próximas apresentações (reutiliza a Agenda Core, sem duplicar o sistema) */
+    /* Próximas apresentações (usa a camada de dados, sem duplicar o sistema) */
     try {
-      const agenda = await window.OndaShows.loadShows();
-      const nextShows = agenda.upcoming.filter((show) => show.status !== "cancelled").slice(0, 3);
+      const { events } = await window.OndaData.getAgenda();
+      const { upcoming } = window.OndaShows.classifyShows(events);
+      const nextShows = upcoming.filter((show) => show.status !== "cancelled").slice(0, 3);
       const list = document.querySelector("[data-next-dates]");
       if (list) {
         list.innerHTML = nextShows
