@@ -49,6 +49,7 @@
   .nav-toggle,
   .site-nav,
   .hero__actions,
+  button[data-ics],
   [data-print-release] {
     display: none !important;
   }

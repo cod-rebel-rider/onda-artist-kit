@@ -56,6 +56,12 @@
     radial-gradient(36rem 22rem at 8% 12%, var(--glow-accent-2), transparent 55%);
 }
 
+/* Hero compacto para páginas internas (agenda, etc.) */
+.hero--compact {
+  min-height: auto;
+  padding-block: var(--space-2xl);
+}
+
 .hero__inner {
   display: grid;
   gap: var(--space-lg);

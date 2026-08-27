@@ -83,3 +83,15 @@ Padrões documentados em `src/pages/components.html` (ferramenta de desenvolvime
 - Dados ausentes não quebram o layout: seções sem conteúdo configurado são ocultadas (`hidden`), imagens ausentes recebem fallback (marca do Core no logotipo, iniciais nas capas, figura ocultada sem foto) e links de plataformas não informados não geram botões;
 - Impressão/PDF: `src/css/print.css` (importado por `main.css`) sobrescreve os tokens dentro de `@media print` — oculta header/navegação/botões/rodapé, exibe a URL após links importantes, evita cortes entre seções (`break-inside: avoid`, `break-after: avoid`) e mantém a hierarquia de conteúdo; o botão “Baixar / imprimir release” chama `window.print()`;
 - SEO: metadados estáticos no `<head>` do release (`description`, `og:title`, `og:description`, `og:type`) com sincronização via JS de `title`/`description`/`og:*` a partir dos dados; `og:image` só é definida quando há foto configurada. A centralização do SEO fica para uma fase futura.
+
+## Fase 4 — Sistema de agenda de shows
+
+- Arquitetura: `data/shows.json` → `src/js/shows.js` (Agenda Core: validação/normalização, classificação futuro/passado, ordenação, formatação de datas) → `src/components/show-card.js` (componente ShowCard) → páginas (`agenda.html`, Home e Release);
+- `ShowCard` (`window.OndaShowCard.render`) renderiza data, horário, título, status textual, local, cidade/UF, endereço, descrição, ingressos, mapa e exportação `.ics` — é reutilizado por Home (próximo show) e Agenda (próximos/histórico), sem HTML de evento duplicado;
+- Datas em ISO/`HH:mm`, formatadas com `Intl` (pt-BR: “Sábado, 12 de setembro de 2026”, “12 SET”); nenhuma conversão de fuso — eventos usam data/hora locais flutuantes (inclusive no `.ics`);
+- Classificação automática pela data corrente: futuros (incluindo cancelados/adiados) em “Próximos shows” em ordem crescente; passados em “Shows anteriores” em ordem decrescente; a ordem do JSON é livre;
+- Dados inválidos não quebram a página: sem título/data válida o evento é ignorado com `console.warn`; horário inválido é descartado mantendo o evento; status desconhecido cai em `confirmed`;
+- Status (`confirmed`/`cancelled`/`postponed`) comunicados por texto (badges) além do estilo; cancelados perdem os botões de ingressos e calendário; adiados exibem nota com `originalDate`;
+- “Adicionar ao calendário” gera `.ics` local (RFC 5545: UID estável, DTSTART/DTEND flutuantes, LOCATION, SUMMARY, DESCRIPTION, URL) via Blob — sem serviços externos (Google Calendar ficará para a Fase 5);
+- Estados vazios: agenda exibe mensagem dedicada quando não há próximos shows; seção de histórico é oculta sem passados; Home exibe “Nenhum show agendado…”;
+- Impressão: botões `.ics` ocultos em `@media print`; cards de show preservados entre páginas (`break-inside: avoid` via `.card`).

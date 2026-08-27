@@ -32,7 +32,7 @@ A proposta é oferecer uma base simples, leve e de baixo custo para que qualquer
 | Recurso | Descrição | Situação |
 | --- | --- | --- |
 | Core do site (Fase 1) | Página inicial, componentes base e navegação responsiva | Implementado (base) |
-| Agenda de shows | Lista dos próximos eventos do artista | Planejado |
+| Agenda de shows (Fase 4) | Próximos shows, histórico, status, ingressos, mapa e exportação .ics — via `data/shows.json` | Implementado |
 | Release eletrônico (Fase 3) | Página de release com biografia, integrantes, discografia, destaques, contratação e exportação em PDF | Implementado |
 | Links e presença digital | Bloco de links para redes sociais, streaming e contato | Planejado |
 | Sistema de Themes | Aparência separada do conteúdo, com temas oficiais e da comunidade | Planejado |
@@ -82,6 +82,7 @@ npx serve .
 
 - Página inicial do site: `index.html`
 - Release eletrônico: `release.html` — o botão “Baixar / imprimir release” abre a janela de impressão do navegador (Ctrl+P → “Salvar como PDF”)
+- Agenda de shows: `agenda.html` — próximos shows, histórico, status, ingressos, mapa e “Adicionar ao calendário” (.ics)
 - Página de componentes (ferramenta de desenvolvimento): `src/pages/components.html`
 - Decisões técnicas do Core: [`docs/core-arquitetura.md`](docs/core-arquitetura.md)
 
@@ -121,6 +122,57 @@ Lista `links` com `{ label, url }` — apenas as plataformas configuradas são e
 | `booking` | `description`, `email`, `phone` (opcionais; vazios não são exibidos) |
 
 Campos de imagem (`logo`, `photo`, `cover`) aceitam caminhos em `assets/` ou `null` — o Core aplica fallback (marca do Core, iniciais da capa) ou oculta o elemento, sem imagens quebradas.
+
+### `data/shows.json` — agenda de shows
+
+Cada show é um objeto dentro da lista `shows`. Datas em ISO (`YYYY-MM-DD`) e horários em `HH:mm` — a apresentação amigável (“Sábado, 12 de setembro de 2026”, “12 SET”) é feita pelo Core com `Intl`; nenhuma conversão de fuso horário é aplicada (data e hora locais).
+
+| Campo | Obrigatório | Uso |
+| --- | --- | --- |
+| `id` | sim (estável) | identificador único do evento — não use índice de array |
+| `title` | sim | nome do evento |
+| `date` | sim | data em ISO `YYYY-MM-DD` |
+| `startTime` / `endTime` | opcional | horários em `HH:mm` |
+| `venue`, `city`, `state`, `country` | opcional | local e cidade |
+| `address` | opcional | endereço completo |
+| `description` | opcional | descrição do evento |
+| `mapUrl` | opcional | link externo para mapa (botão “Ver no mapa”) |
+| `ticketUrl` | opcional | link de ingressos (botão “Ingressos”; vazio = sem botão) |
+| `status` | opcional | `confirmed` (padrão), `cancelled` ou `postponed` |
+| `originalDate` | opcional | data original do show, quando adiado |
+
+Exemplo completo:
+
+```json
+{
+  "shows": [
+    {
+      "id": "show-001",
+      "title": "Festival da Cena Independente",
+      "date": "2026-09-12",
+      "startTime": "20:00",
+      "endTime": "21:00",
+      "venue": "Nome do Local",
+      "city": "Brasília",
+      "state": "DF",
+      "country": "BR",
+      "description": "Descrição do evento.",
+      "address": "Endereço do local",
+      "mapUrl": "https://www.openstreetmap.org/",
+      "ticketUrl": "https://plataforma-de-ingressos.exemplo/",
+      "status": "confirmed"
+    }
+  ]
+}
+```
+
+**Como adicionar um show:** copie um objeto existente dentro de `shows`, altere `id`, dados e publique o site novamente. A classificação (próximos/passados) e a ordenação são automáticas — a ordem dos itens no arquivo é livre.
+
+**Como cancelar um show:** mude o `status` para `"cancelled"`. O evento continua visível com o selo **CANCELADO** e deixa de exibir botão de ingressos e de calendário.
+
+**Como adiar um show:** mude o `status` para `"postponed"`, atualize `date` com a nova data e informe `originalDate` com a data anterior — a interface exibe o selo **ADIADO** e a nota “Adiado de … para …”.
+
+Eventos com dados inválidos (título ou data ausente/inválida) são ignorados com aviso no console, sem quebrar a página. Futuros (incluindo cancelados e adiados) aparecem em “Próximos shows”; passados vão para “Shows anteriores”.
 
 ## Hospedagem
 

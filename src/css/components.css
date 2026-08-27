@@ -498,3 +498,85 @@
   height: 2rem;
   border-radius: var(--radius-sm);
 }
+
+/* -----------------------------------------------------------------------
+   Agenda — ShowCard
+   ----------------------------------------------------------------------- */
+.show-card {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--space-lg);
+}
+
+.show-card__body {
+  display: grid;
+  gap: var(--space-2xs);
+  flex-grow: 1;
+}
+
+.show-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs);
+}
+
+.show-card__when {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.show-card__address {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.show-card__note {
+  color: var(--color-accent-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.show-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+}
+
+/* Status: diferenciados por texto e estilo — nunca apenas por cor */
+.badge--confirmed {
+  border-color: var(--color-accent-2);
+  color: var(--color-accent-2);
+}
+
+.badge--cancelled {
+  border-color: var(--color-border);
+  background-color: var(--color-surface-strong);
+  color: var(--color-text-muted);
+}
+
+.badge--postponed {
+  border-color: transparent;
+  background: var(--gradient-accent);
+  color: var(--color-on-accent);
+}
+
+.show-card--cancelled {
+  opacity: 0.78;
+}
+
+.show-card--cancelled .event-card__date {
+  background: none;
+  border: var(--border-width) solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+/* Estado vazio da agenda */
+.agenda-empty {
+  padding: var(--space-2xl);
+  border: var(--border-width) dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
