@@ -1,0 +1,25 @@
+{
+  "name": "Banda Exemplo",
+  "tagline": "Som feito de madrugada: guitarras densas, sintetizadores frios e letras sobre a cidade depois que ela apaga as luzes.",
+  "city": "Brasília",
+  "state": "DF",
+  "genre": "Rock independente",
+  "genres": ["Rock alternativo", "Pós-punk", "Música eletrônica"],
+  "founded": 2024,
+  "about": [
+    "A Banda Exemplo nasceu em 2024 em uma sala de ensaio no Setor Industrial de Brasília, entre ampladores emprestados e cafeína. O projeto começou como registro caseiro e virou banda de verdade quando as músicas pediram palco.",
+    "No palco, a banda combina rock alternativo com texturas eletrônicas — referências que vão do pós-punk brasileiro à eletrônica de dança. A proposta é simples: fazer a noite valer a viagem."
+  ],
+  "members": [
+    { "name": "Pessoa 1", "role": "Vocal" },
+    { "name": "Pessoa 2", "role": "Guitarra" },
+    { "name": "Pessoa 3", "role": "Baixo" },
+    { "name": "Pessoa 4", "role": "Bateria" }
+  ],
+  "musicalIdentity": "Rock alternativo com elementos de pós-punk, música eletrônica e estética urbana: guitarras secas, sintetizadores analógicos e batidas dançantes sobre letras noturnas.",
+  "influences": ["Pós-punk brasileiro", "Eletrônica de dança", "Rock alternativo dos anos 1990"],
+  "logo": null,
+  "logoAlt": "Logotipo da Banda Exemplo",
+  "photo": null,
+  "photoAlt": "A Banda Exemplo ao vivo em apresentação (foto demonstrativa)"
+}

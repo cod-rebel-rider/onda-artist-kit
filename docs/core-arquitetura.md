@@ -74,3 +74,12 @@ Padrões documentados em `src/pages/components.html` (ferramenta de desenvolvime
 - Agenda, release e links são seções demonstrativas, não sistemas;
 - O painel do menu mobile depende de JavaScript;
 - Ainda não há testes automatizados nem linting de front-end.
+
+## Fase 3 — Página de release e camada de dados
+
+- `release.html`: página de release eletrônico reutilizando o Core (header, navegação, hero, cards, chips, footer), com seções próprias: apresentação, biografia, integrantes, identidade musical, discografia, destaques, atuação/experiência, contratação e redes;
+- Camada de dados: `src/js/content.js` expõe `window.OndaContent` (fetch de JSON com erro explícito, escape de HTML, aplicação de textos/parágrafos, imagens com fallback e renderizadores reutilizáveis de integrantes, discografia e links); `src/js/home.js` e `src/js/release.js` hidratam as páginas a partir de `data/band.json`, `data/links.json` e `data/release.json`;
+- Modelo de fallback: as páginas trazem conteúdo estático de demonstração; servidas por HTTP, os JSONs substituem o conteúdo hidratando as seções. Em `file://` o `fetch` é bloqueado pelo navegador e o fallback estático permanece (com aviso no console);
+- Dados ausentes não quebram o layout: seções sem conteúdo configurado são ocultadas (`hidden`), imagens ausentes recebem fallback (marca do Core no logotipo, iniciais nas capas, figura ocultada sem foto) e links de plataformas não informados não geram botões;
+- Impressão/PDF: `src/css/print.css` (importado por `main.css`) sobrescreve os tokens dentro de `@media print` — oculta header/navegação/botões/rodapé, exibe a URL após links importantes, evita cortes entre seções (`break-inside: avoid`, `break-after: avoid`) e mantém a hierarquia de conteúdo; o botão “Baixar / imprimir release” chama `window.print()`;
+- SEO: metadados estáticos no `<head>` do release (`description`, `og:title`, `og:description`, `og:type`) com sincronização via JS de `title`/`description`/`og:*` a partir dos dados; `og:image` só é definida quando há foto configurada. A centralização do SEO fica para uma fase futura.

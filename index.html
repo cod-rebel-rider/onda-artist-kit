@@ -9,6 +9,8 @@
     <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
     <link rel="stylesheet" href="src/css/main.css">
     <script src="src/js/main.js" defer></script>
+    <script src="src/js/content.js" defer></script>
+    <script src="src/js/home.js" defer></script>
 </head>
 <body>
     <a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
@@ -16,16 +18,19 @@
     <header class="site-header">
         <div class="container site-header__inner">
             <a class="brand" href="#inicio">
-                <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-                    <defs>
-                        <linearGradient id="brand-grad" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0" stop-color="#8b5cf6"/>
-                            <stop offset="1" stop-color="#22d3ee"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M12 40c6-14 12-14 18 0s12 14 18 0" fill="none" stroke="url(#brand-grad)" stroke-width="7" stroke-linecap="round"/>
-                </svg>
-                <span class="brand__name">Banda Exemplo</span>
+                <span class="brand__logo">
+                    <img class="brand__img" data-logo-img alt="" hidden>
+                    <svg class="brand__mark" data-logo-fallback viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+                        <defs>
+                            <linearGradient id="brand-grad" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#8b5cf6"/>
+                                <stop offset="1" stop-color="#22d3ee"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M12 40c6-14 12-14 18 0s12 14 18 0" fill="none" stroke="url(#brand-grad)" stroke-width="7" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span class="brand__name" data-band-name>Banda Exemplo</span>
             </a>
 
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" data-menu-toggle>
@@ -39,9 +44,9 @@
 
             <nav class="site-nav" id="menu-principal" aria-label="Navegação principal" data-open="false">
                 <ul class="nav__list" role="list">
-                    <li><a class="nav__link" href="#inicio" aria-current="page">Início</a></li>
+                    <li><a class="nav__link" href="index.html" aria-current="page">Início</a></li>
                     <li><a class="nav__link" href="#sobre">Sobre</a></li>
-                    <li><a class="nav__link" href="#release">Release</a></li>
+                    <li><a class="nav__link" href="release.html">Release</a></li>
                     <li><a class="nav__link" href="#agenda">Agenda</a></li>
                     <li><a class="nav__link" href="#links">Links</a></li>
                 </ul>
@@ -52,9 +57,9 @@
     <main id="conteudo" tabindex="-1">
         <section class="hero" id="inicio" aria-labelledby="titulo-inicio">
             <div class="container hero__inner">
-                <p class="hero__eyebrow">Brasília, DF · Rock independente</p>
-                <h1 id="titulo-inicio">Banda Exemplo</h1>
-                <p class="hero__tagline">Som feito de madrugada: guitarras densas, sintetizadores frios e letras sobre a cidade depois que ela apaga as luzes.</p>
+                <p class="hero__eyebrow" data-hero-eyebrow>Brasília, DF · Rock independente</p>
+                <h1 id="titulo-inicio" data-band-name>Banda Exemplo</h1>
+                <p class="hero__tagline" data-band-tagline>Som feito de madrugada: guitarras densas, sintetizadores frios e letras sobre a cidade depois que ela apaga as luzes.</p>
                 <div class="hero__actions">
                     <a class="btn btn--primary" href="#release">Ouvir</a>
                     <a class="btn btn--ghost" href="#agenda">Ver agenda</a>
@@ -68,7 +73,7 @@
                     <h2 id="titulo-sobre">Uma banda, uma cidade, uma madrugada inteira</h2>
                 </header>
                 <div class="grid grid--2">
-                    <div class="grid">
+                    <div class="grid" data-about-text>
                         <p>A Banda Exemplo nasceu em 2024 em uma sala de ensaio no Setor Industrial de Brasília, entre ampladores emprestados e cafeína. O projeto começou como registro caseiro e virou banda de verdade quando as músicas pediram palco.</p>
                         <p>No palco, o trio combina rock alternativo com texturas eletrônicas — referências que vão do pós-punk brasileiro à eletrônica de dança. A proposta é simples: fazer a noite valer a viagem.</p>
                     </div>
@@ -76,10 +81,10 @@
                         <h3 class="card__title">Ficha técnica</h3>
                         <p class="card__text">Banda fictícia criada para demonstrar o Onda Artist Kit.</p>
                         <ul class="card__meta" role="list">
-                            <li>Origem: Brasília, DF</li>
-                            <li>Gênero: rock independente</li>
-                            <li>Ativos desde 2024</li>
-                            <li>Formação: trio</li>
+                            <li>Origem: <span data-ficha="origem">Brasília, DF</span></li>
+                            <li>Gênero: <span data-ficha="genero">rock independente</span></li>
+                            <li>Ativos desde <span data-ficha="desde">2024</span></li>
+                            <li>Formação: <span data-ficha="formacao">4 integrantes</span></li>
                         </ul>
                     </div>
                 </div>
@@ -93,7 +98,7 @@
                     <h2 id="titulo-release">Música</h2>
                     <p>Gravações, EPs e singles — direto da sala de ensaio para a internet.</p>
                 </header>
-                <div class="grid grid--3">
+                <div class="grid grid--3" data-discography>
                     <article class="card release-card">
                         <div class="release-card__cover" aria-hidden="true">MA</div>
                         <h3 class="card__title">Maré Alta</h3>
@@ -174,13 +179,13 @@
                 </header>
                 <div class="grid grid--2">
                     <div>
-                        <p>Para shows, festivais, parcerias e imprensa, fale diretamente com a produção da banda.</p>
-                        <a class="btn btn--primary" href="mailto:contato@bandaexemplo.com.br">contato@bandaexemplo.com.br</a>
+                        <p data-booking-description>Para shows, festivais, parcerias e imprensa, fale diretamente com a produção da banda.</p>
+                        <a class="btn btn--primary" data-booking-email href="mailto:contato@bandaexemplo.com.br">contato@bandaexemplo.com.br</a>
                     </div>
                     <div id="links">
                         <h3>Onde encontrar</h3>
                         <p>Perfis oficiais da banda nas plataformas:</p>
-                        <ul class="chip-list" role="list">
+                        <ul class="chip-list" data-links role="list">
                             <li><a class="chip" href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer">Spotify <span aria-hidden="true">↗</span></a></li>
                             <li><a class="chip" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a></li>
                             <li><a class="chip" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube <span aria-hidden="true">↗</span></a></li>
