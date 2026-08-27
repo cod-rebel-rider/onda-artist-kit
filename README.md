@@ -33,6 +33,7 @@ A proposta é oferecer uma base simples, leve e de baixo custo para que qualquer
 | --- | --- | --- |
 | Core do site (Fase 1) | Página inicial, componentes base e navegação responsiva | Implementado (base) |
 | Agenda de shows (Fase 4) | Próximos shows, histórico, status, ingressos, mapa e exportação .ics — via `data/shows.json` | Implementado |
+| Google Calendar (Fase 5) | Fonte opcional da agenda via calendário público (sem API Key/OAuth) com fallback local | Implementado (opcional) |
 | Release eletrônico (Fase 3) | Página de release com biografia, integrantes, discografia, destaques, contratação e exportação em PDF | Implementado |
 | Links e presença digital | Bloco de links para redes sociais, streaming e contato | Planejado |
 | Sistema de Themes | Aparência separada do conteúdo, com temas oficiais e da comunidade | Planejado |
@@ -173,6 +174,54 @@ Exemplo completo:
 **Como adiar um show:** mude o `status` para `"postponed"`, atualize `date` com a nova data e informe `originalDate` com a data anterior — a interface exibe o selo **ADIADO** e a nota “Adiado de … para …”.
 
 Eventos com dados inválidos (título ou data ausente/inválida) são ignorados com aviso no console, sem quebrar a página. Futuros (incluindo cancelados e adiados) aparecem em “Próximos shows”; passados vão para “Shows anteriores”.
+
+## Usando Google Calendar
+
+O Onda Artist Kit pode usar um **Google Calendar público** como fonte da agenda, no lugar de editar `data/shows.json`. A integração é **opcional** e **não usa API Key, OAuth, senha nem acesso à sua conta Google**: utiliza apenas o endereço público que o próprio Google disponibiliza para calendários públicos.
+
+### Como configurar
+
+1. Crie um calendário no Google Calendar (ou use um existente);
+2. Deixe-o **público**: em Configurações → *Access permissions for events* → marque **Make available to public**;
+3. Copie o endereço do calendário. Em Configurações → *Integrate calendar*, existe a opção **Public address in iCal format**, com um formato parecido com:
+
+   ```text
+   https://calendar.google.com/calendar/ical/xxxxxxxx%40group.calendar.google.com/public/basic.ics
+   ```
+
+   (iCal é só outro nome para o formato de calendário compartilhável. O `calendarId` é a parte `xxxxxxxx@group.calendar.google.com`.)
+
+4. Em `data/calendar.json`, ative a integração — informando `calendarId` **ou** `publicUrl`:
+
+   ```json
+   {
+     "enabled": true,
+     "mode": "google",
+     "provider": "google",
+     "calendarId": "xxxxxxxx@group.calendar.google.com",
+     "publicUrl": ""
+   }
+   ```
+
+5. Publique o site.
+
+Para desativar e voltar ao arquivo local, mude para `"enabled": false` (ou `"mode": "local"`).
+
+### Como funciona
+
+- `mode: "local"` → agenda a partir de `data/shows.json`;
+- `mode: "google"` → agenda a partir do Google Calendar público. Se o Google estiver indisponível, o navegador bloquear o acesso ou a configuração estiver incompleta, o kit **usa automaticamente `data/shows.json`** (fallback) — o site nunca fica sem agenda por causa do serviço externo;
+- as duas fontes **nunca são misturadas** (evita shows duplicados);
+- os eventos aparecem nos horários locais de quem visita; eventos sem fuso usam data/hora como cadastrados.
+
+### Privacidade e limitações
+
+- **Use apenas informações públicas**: qualquer pessoa que abrir o site verá os eventos do calendário;
+- não coloque dados privados no calendário usado pelo site;
+- o kit nunca pede senha, token nem acesso à sua conta — somente o endereço público;
+- mudanças no calendário podem levar alguns minutos para aparecer no site;
+- **eventos recorrentes**: o kit exibe a primeira ocorrência de cada evento repetido (expansão completa ainda não é suportada);
+- alguns navegadores/hospedagens podem bloquear a leitura direta do endereço do Google (técnica chamada *CORS*). Nesse caso o fallback entra em ação sozinho. Alternativa confiável: salve o arquivo `.ics` do Google na pasta `data/` do repositório e use `"publicUrl": "data/calendar.ics"` — o arquivo passa a ser lido do próprio site (atualize-o periodicamente).
 
 ## Hospedagem
 

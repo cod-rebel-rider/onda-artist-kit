@@ -1,0 +1,7 @@
+{
+  "enabled": false,
+  "mode": "local",
+  "provider": "google",
+  "calendarId": "",
+  "publicUrl": ""
+}
