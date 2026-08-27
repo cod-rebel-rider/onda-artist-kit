@@ -454,3 +454,47 @@
 .swatch--accent .swatch__sample { background-color: var(--color-accent); }
 .swatch--accent-2 .swatch__sample { background-color: var(--color-accent-2); }
 .swatch--gradient .swatch__sample { background: var(--gradient-accent); }
+
+/* -----------------------------------------------------------------------
+   Lista com marcadores estilizados (destaques do release)
+   Sem display:grid para preservar a semântica de lista nos leitores de tela.
+   ----------------------------------------------------------------------- */
+.styled-list {
+  padding-left: 1.25rem;
+}
+
+.styled-list li + li {
+  margin-top: var(--space-xs);
+}
+
+.styled-list li::marker {
+  color: var(--color-accent);
+}
+
+/* Lista de badges (gêneros, tags) */
+.badge-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+/* Foto principal do release */
+.release-hero__media {
+  width: 100%;
+  margin-top: var(--space-sm);
+}
+
+.release-hero__media img {
+  width: 100%;
+  max-width: 46rem;
+  margin-inline: auto;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+/* Logotipo configurado nos dados (substitui a marca padrão do Core) */
+.brand__img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-sm);
+}

@@ -33,7 +33,7 @@ A proposta é oferecer uma base simples, leve e de baixo custo para que qualquer
 | --- | --- | --- |
 | Core do site (Fase 1) | Página inicial, componentes base e navegação responsiva | Implementado (base) |
 | Agenda de shows | Lista dos próximos eventos do artista | Planejado |
-| Release eletrônico | Espaço para divulgação de lançamentos, com links para streaming/download | Planejado |
+| Release eletrônico (Fase 3) | Página de release com biografia, integrantes, discografia, destaques, contratação e exportação em PDF | Implementado |
 | Links e presença digital | Bloco de links para redes sociais, streaming e contato | Planejado |
 | Sistema de Themes | Aparência separada do conteúdo, com temas oficiais e da comunidade | Planejado |
 
@@ -81,8 +81,46 @@ npx serve .
 ```
 
 - Página inicial do site: `index.html`
+- Release eletrônico: `release.html` — o botão “Baixar / imprimir release” abre a janela de impressão do navegador (Ctrl+P → “Salvar como PDF”)
 - Página de componentes (ferramenta de desenvolvimento): `src/pages/components.html`
 - Decisões técnicas do Core: [`docs/core-arquitetura.md`](docs/core-arquitetura.md)
+
+As páginas carregam os dados de `data/*.json` via `fetch`. Servindo localmente (comandos acima), o conteúdo exibido vem dos JSONs; abrindo os arquivos diretamente (`file://`), o navegador bloqueia o `fetch` e o conteúdo estático de demonstração é exibido como fallback.
+
+## Dados do conteúdo (`data/`)
+
+O conteúdo do site e do release é carregado dos arquivos JSON do diretório `data/` — personalize-os para usar o kit com o seu projeto:
+
+### `data/band.json` — dados do artista
+
+| Campo | Uso |
+| --- | --- |
+| `name`, `tagline`, `city`, `state`, `genre` | identificação exibida no site e no release |
+| `genres` | lista de gêneros (badges na identidade musical) |
+| `founded` | ano de início (ficha técnica) |
+| `about` | parágrafos da seção Sobre |
+| `members` | lista de `{ name, role }` (integrantes) |
+| `musicalIdentity` | texto da identidade musical no release |
+| `logo`, `logoAlt` | logotipo (opcional; sem ele, usa-se a marca do Core) |
+| `photo`, `photoAlt` | foto principal do release (opcional; sem ela, o elemento é ocultado) |
+
+### `data/links.json` — redes e links
+
+Lista `links` com `{ label, url }` — apenas as plataformas configuradas são exibidas, no site e no release.
+
+### `data/release.json` — dados do release
+
+| Campo | Uso |
+| --- | --- |
+| `headline` | chamada exibida no topo do release |
+| `presentation` | texto de apresentação |
+| `biography` | parágrafos da biografia |
+| `highlights` | lista de destaques (a seção é ocultada se vazia) |
+| `experience` | atuação/experiência (a seção é ocultada se vazia) |
+| `discography` | lançamentos: `title`, `type` (single, EP, álbum), `year`, `description`, `cover` (opcional) e `links` (ex.: `spotify`, `youtube`, `bandcamp` — apenas links informados geram botões) |
+| `booking` | `description`, `email`, `phone` (opcionais; vazios não são exibidos) |
+
+Campos de imagem (`logo`, `photo`, `cover`) aceitam caminhos em `assets/` ou `null` — o Core aplica fallback (marca do Core, iniciais da capa) ou oculta o elemento, sem imagens quebradas.
 
 ## Hospedagem
 
