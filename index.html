@@ -3,11 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Onda Artist Kit — kit open source para criação de sites estáticos para artistas independentes.">
-    <title>Onda Artist Kit</title>
+    <meta name="description" content="Site de demonstração da Banda Exemplo, banda fictícia de rock independente de Brasília, criada para demonstrar o Onda Artist Kit.">
+    <meta name="theme-color" content="#0e1016">
+    <title>Banda Exemplo — Rock independente · Brasília, DF</title>
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <link rel="stylesheet" href="src/css/main.css">
+    <script src="src/js/main.js" defer></script>
 </head>
 <body>
-    <h1>Onda Artist Kit</h1>
-    <p>Kit open source para criação de sites estáticos para artistas independentes.</p>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
+
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a class="brand" href="#inicio">
+                <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+                    <defs>
+                        <linearGradient id="brand-grad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#8b5cf6"/>
+                            <stop offset="1" stop-color="#22d3ee"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M12 40c6-14 12-14 18 0s12 14 18 0" fill="none" stroke="url(#brand-grad)" stroke-width="7" stroke-linecap="round"/>
+                </svg>
+                <span class="brand__name">Banda Exemplo</span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" data-menu-toggle>
+                <span class="visually-hidden">Abrir menu</span>
+                <span class="nav-toggle__bars" aria-hidden="true">
+                    <span class="nav-toggle__bar"></span>
+                    <span class="nav-toggle__bar"></span>
+                    <span class="nav-toggle__bar"></span>
+                </span>
+            </button>
+
+            <nav class="site-nav" id="menu-principal" aria-label="Navegação principal" data-open="false">
+                <ul class="nav__list" role="list">
+                    <li><a class="nav__link" href="#inicio" aria-current="page">Início</a></li>
+                    <li><a class="nav__link" href="#sobre">Sobre</a></li>
+                    <li><a class="nav__link" href="#release">Release</a></li>
+                    <li><a class="nav__link" href="#agenda">Agenda</a></li>
+                    <li><a class="nav__link" href="#links">Links</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo" tabindex="-1">
+        <section class="hero" id="inicio" aria-labelledby="titulo-inicio">
+            <div class="container hero__inner">
+                <p class="hero__eyebrow">Brasília, DF · Rock independente</p>
+                <h1 id="titulo-inicio">Banda Exemplo</h1>
+                <p class="hero__tagline">Som feito de madrugada: guitarras densas, sintetizadores frios e letras sobre a cidade depois que ela apaga as luzes.</p>
+                <div class="hero__actions">
+                    <a class="btn btn--primary" href="#release">Ouvir</a>
+                    <a class="btn btn--ghost" href="#agenda">Ver agenda</a>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="sobre" aria-labelledby="titulo-sobre">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__eyebrow">Sobre</p>
+                    <h2 id="titulo-sobre">Uma banda, uma cidade, uma madrugada inteira</h2>
+                </header>
+                <div class="grid grid--2">
+                    <div class="grid">
+                        <p>A Banda Exemplo nasceu em 2024 em uma sala de ensaio no Setor Industrial de Brasília, entre ampladores emprestados e cafeína. O projeto começou como registro caseiro e virou banda de verdade quando as músicas pediram palco.</p>
+                        <p>No palco, o trio combina rock alternativo com texturas eletrônicas — referências que vão do pós-punk brasileiro à eletrônica de dança. A proposta é simples: fazer a noite valer a viagem.</p>
+                    </div>
+                    <div class="card card--surface">
+                        <h3 class="card__title">Ficha técnica</h3>
+                        <p class="card__text">Banda fictícia criada para demonstrar o Onda Artist Kit.</p>
+                        <ul class="card__meta" role="list">
+                            <li>Origem: Brasília, DF</li>
+                            <li>Gênero: rock independente</li>
+                            <li>Ativos desde 2024</li>
+                            <li>Formação: trio</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--alt" id="release" aria-labelledby="titulo-release">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__eyebrow">Release</p>
+                    <h2 id="titulo-release">Música</h2>
+                    <p>Gravações, EPs e singles — direto da sala de ensaio para a internet.</p>
+                </header>
+                <div class="grid grid--3">
+                    <article class="card release-card">
+                        <div class="release-card__cover" aria-hidden="true">MA</div>
+                        <h3 class="card__title">Maré Alta</h3>
+                        <p class="card__meta">EP · 2026</p>
+                        <a class="chip" href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer" aria-label="Ouvir o EP Maré Alta no Spotify (link demonstrativo)">Ouvir <span aria-hidden="true">↗</span></a>
+                    </article>
+                    <article class="card release-card">
+                        <div class="release-card__cover release-card__cover--alt" aria-hidden="true">RB</div>
+                        <h3 class="card__title">Ruído Branco</h3>
+                        <p class="card__meta">Single · 2025</p>
+                        <a class="chip" href="https://bandcamp.com/" target="_blank" rel="noopener noreferrer" aria-label="Ouvir o single Ruído Branco no Bandcamp (link demonstrativo)">Ouvir <span aria-hidden="true">↗</span></a>
+                    </article>
+                    <article class="card release-card">
+                        <div class="release-card__cover release-card__cover--deep" aria-hidden="true">PO</div>
+                        <h3 class="card__title">Primeira Onda</h3>
+                        <p class="card__meta">Álbum · 2024</p>
+                        <a class="chip" href="https://music.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="Ouvir o álbum Primeira Onda no YouTube Music (link demonstrativo)">Ouvir <span aria-hidden="true">↗</span></a>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="agenda" aria-labelledby="titulo-agenda">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__eyebrow">Agenda</p>
+                    <h2 id="titulo-agenda">Próximos shows</h2>
+                    <p>Datas confirmadas da rodada de apresentações de 2026.</p>
+                </header>
+                <div class="grid grid--3">
+                    <article class="card event-card">
+                        <p class="event-card__date">
+                            <time datetime="2026-09-12T20:00:00-03:00">
+                                <span class="event-card__day">12</span>
+                                <span class="event-card__month">set</span>
+                            </time>
+                        </p>
+                        <div class="event-card__body">
+                            <h3 class="card__title">Festival Noite Alta</h3>
+                            <p>Centro Cultural Vilanova</p>
+                            <p class="card__meta">Brasília, DF · 20h</p>
+                        </div>
+                    </article>
+                    <article class="card event-card">
+                        <p class="event-card__date">
+                            <time datetime="2026-10-03T21:30:00-03:00">
+                                <span class="event-card__day">03</span>
+                                <span class="event-card__month">out</span>
+                            </time>
+                        </p>
+                        <div class="event-card__body">
+                            <h3 class="card__title">Sala Subsolo</h3>
+                            <p>Setor Bueno</p>
+                            <p class="card__meta">Goiânia, GO · 21h30</p>
+                        </div>
+                    </article>
+                    <article class="card event-card">
+                        <p class="event-card__date">
+                            <time datetime="2026-10-24T19:00:00-03:00">
+                                <span class="event-card__day">24</span>
+                                <span class="event-card__month">out</span>
+                            </time>
+                        </p>
+                        <div class="event-card__body">
+                            <h3 class="card__title">Bar Onda</h3>
+                            <p>Asa Sul</p>
+                            <p class="card__meta">Brasília, DF · 19h</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--alt" id="contato" aria-labelledby="titulo-contato">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__eyebrow">Contato</p>
+                    <h2 id="titulo-contato">Vamos marcar um show?</h2>
+                </header>
+                <div class="grid grid--2">
+                    <div>
+                        <p>Para shows, festivais, parcerias e imprensa, fale diretamente com a produção da banda.</p>
+                        <a class="btn btn--primary" href="mailto:contato@bandaexemplo.com.br">contato@bandaexemplo.com.br</a>
+                    </div>
+                    <div id="links">
+                        <h3>Onde encontrar</h3>
+                        <p>Perfis oficiais da banda nas plataformas:</p>
+                        <ul class="chip-list" role="list">
+                            <li><a class="chip" href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer">Spotify <span aria-hidden="true">↗</span></a></li>
+                            <li><a class="chip" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a></li>
+                            <li><a class="chip" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube <span aria-hidden="true">↗</span></a></li>
+                            <li><a class="chip" href="https://bandcamp.com/" target="_blank" rel="noopener noreferrer">Bandcamp <span aria-hidden="true">↗</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container site-footer__inner">
+            <p><small>© <span data-year>2026</span> Banda Exemplo — site de demonstração com banda fictícia.</small></p>
+            <p><small>Feito com <a href="https://github.com/Onda-Noturna/onda-artist-kit">Onda Artist Kit</a></small></p>
+        </div>
+    </footer>
+
 </body>
 </html>

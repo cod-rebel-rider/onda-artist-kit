@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Página interna de demonstração dos componentes do Onda Artist Kit. Ferramenta de desenvolvimento.">
+    <title>Componentes — Onda Artist Kit</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <a class="skip-link" href="#cp-conteudo">Pular para o conteúdo principal</a>
+
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a class="brand" href="../index.html">
+                <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+                    <defs>
+                        <linearGradient id="brand-grad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#8b5cf6"/>
+                            <stop offset="1" stop-color="#22d3ee"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M12 40c6-14 12-14 18 0s12 14 18 0" fill="none" stroke="url(#brand-grad)" stroke-width="7" stroke-linecap="round"/>
+                </svg>
+                <span class="brand__name">Onda Artist Kit</span>
+            </a>
+            <a class="btn btn--ghost btn--sm" href="../index.html">Voltar ao início</a>
+        </div>
+    </header>
+
+    <main id="cp-conteudo" tabindex="-1">
+        <section class="section">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__eyebrow">Ferramenta de desenvolvimento</p>
+                    <h1>Demonstração de componentes</h1>
+                    <p>Esta página documenta e valida os padrões visuais do Core do Onda Artist Kit. Ela serve de apoio durante o desenvolvimento — não faz parte do site final do artista.</p>
+                </header>
+
+                <h2 id="cp-tipografia">Tipografia</h2>
+                <h3>Título de nível 3</h3>
+                <p>Parágrafo com <strong>texto em destaque</strong>, <a href="#cp-tipografia">um link inline</a> e <small>informação complementar em tamanho menor</small>. Os títulos usam a escala definida em <code>variables.css</code> e o corpo do texto tem contraste verificado sobre o fundo escuro.</p>
+
+                <h2 id="cp-botoes">Botões</h2>
+                <div class="hero__actions">
+                    <a class="btn btn--primary" href="#cp-botoes">Botão primário (link)</a>
+                    <button class="btn btn--primary" type="button">Botão primário (button)</button>
+                    <a class="btn btn--ghost" href="#cp-botoes">Botão fantasma (link)</a>
+                    <button class="btn btn--sm" type="button">Botão pequeno</button>
+                </div>
+                <p class="field__hint">Navegue por teclado (Tab) para conferir o anel de foco visível em todos os controles.</p>
+                <h2 id="cp-cards">Cards e badges</h2>
+                <div class="grid grid--3">
+                    <article class="card">
+                        <h3 class="card__title">Card simples</h3>
+                        <p class="card__text">Bloco de conteúdo genérico: título, texto de apoio e metadados. Serve de base para outros cards.</p>
+                        <p class="card__meta"><span>Meta 1</span><span>Meta 2</span></p>
+                    </article>
+                    <article class="card event-card">
+                        <p class="event-card__date">
+                            <time datetime="2026-09-12T20:00:00-03:00">
+                                <span class="event-card__day">12</span>
+                                <span class="event-card__month">set</span>
+                            </time>
+                        </p>
+                        <div class="event-card__body">
+                            <h3 class="card__title">Card de evento</h3>
+                            <p>Local do evento</p>
+                            <p class="card__meta">Cidade, UF · 20h</p>
+                        </div>
+                    </article>
+                    <article class="card release-card">
+                        <div class="release-card__cover" aria-hidden="true">AE</div>
+                        <h3 class="card__title">Card de release</h3>
+                        <p class="card__meta">EP · 2026</p>
+                        <a class="chip" href="#cp-cards">Ouvir <span aria-hidden="true">↗</span></a>
+                    </article>
+                </div>
+                <div class="hero__actions">
+                    <span class="badge">Badge padrão</span>
+                    <span class="badge badge--accent">Badge destaque</span>
+                </div>
+
+                <h2 id="cp-links">Links e chips</h2>
+                <p>Chips representam links de presença digital (redes, streaming):</p>
+                <ul class="chip-list" role="list">
+                    <li><a class="chip" href="#cp-links">Spotify <span aria-hidden="true">↗</span></a></li>
+                    <li><a class="chip" href="#cp-links">Instagram <span aria-hidden="true">↗</span></a></li>
+                    <li><a class="chip" href="#cp-links">YouTube <span aria-hidden="true">↗</span></a></li>
+                    <li><a class="chip" href="#cp-links">Bandcamp <span aria-hidden="true">↗</span></a></li>
+                </ul>
+                <h2 id="cp-formulario">Formulário</h2>
+                <form class="grid" action="#">
+                    <div class="field">
+                        <label class="field__label" for="cp-nome">Nome</label>
+                        <input class="input" type="text" id="cp-nome" name="nome" autocomplete="name">
+                    </div>
+                    <div class="field">
+                        <label class="field__label" for="cp-email">E-mail</label>
+                        <input class="input" type="email" id="cp-email" name="email" autocomplete="email" aria-describedby="cp-email-hint">
+                        <p class="field__hint" id="cp-email-hint">Usado apenas para demonstração — o formulário não envia dados.</p>
+                    </div>
+                    <div class="field">
+                        <label class="field__label" for="cp-assunto">Assunto</label>
+                        <select class="select" id="cp-assunto" name="assunto">
+                            <option value="show">Show</option>
+                            <option value="imprensa">Imprensa</option>
+                            <option value="parceria">Parceria</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label class="field__label" for="cp-mensagem">Mensagem</label>
+                        <textarea class="textarea" id="cp-mensagem" name="mensagem"></textarea>
+                    </div>
+                    <div class="checkbox">
+                        <input class="checkbox__input" type="checkbox" id="cp-news" name="newsletter">
+                        <label for="cp-news">Quero receber novidades</label>
+                    </div>
+                    <button class="btn btn--primary" type="button">Enviar</button>
+                </form>
+
+                <h2 id="cp-paleta">Paleta</h2>
+                <p>Tokens de cor definidos em <code>src/css/variables.css</code> — os Themes futuros sobrescreverão exatamente estes valores:</p>
+                <div class="grid grid--3">
+                    <div class="swatch swatch--bg"><div class="swatch__sample"></div><small>--color-bg</small></div>
+                    <div class="swatch swatch--surface"><div class="swatch__sample"></div><small>--color-surface</small></div>
+                    <div class="swatch swatch--surface-strong"><div class="swatch__sample"></div><small>--color-surface-strong</small></div>
+                    <div class="swatch swatch--border"><div class="swatch__sample"></div><small>--color-border</small></div>
+                    <div class="swatch swatch--text"><div class="swatch__sample"></div><small>--color-text</small></div>
+                    <div class="swatch swatch--muted"><div class="swatch__sample"></div><small>--color-text-muted</small></div>
+                    <div class="swatch swatch--accent"><div class="swatch__sample"></div><small>--color-accent</small></div>
+                    <div class="swatch swatch--accent-2"><div class="swatch__sample"></div><small>--color-accent-2</small></div>
+                    <div class="swatch swatch--gradient"><div class="swatch__sample"></div><small>--gradient-accent</small></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container site-footer__inner">
+            <p><small>Página interna de desenvolvimento — não é parte do site final.</small></p>
+            <p><small><a href="../index.html">Voltar ao início</a></small></p>
+        </div>
+    </footer>
+
+</body>
+</html>

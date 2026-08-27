@@ -31,7 +31,7 @@ A proposta é oferecer uma base simples, leve e de baixo custo para que qualquer
 
 | Recurso | Descrição | Situação |
 | --- | --- | --- |
-| Estrutura base do projeto | Organização de diretórios e documentação inicial | Em construção |
+| Core do site (Fase 1) | Página inicial, componentes base e navegação responsiva | Implementado (base) |
 | Agenda de shows | Lista dos próximos eventos do artista | Planejado |
 | Release eletrônico | Espaço para divulgação de lançamentos, com links para streaming/download | Planejado |
 | Links e presença digital | Bloco de links para redes sociais, streaming e contato | Planejado |
@@ -70,6 +70,20 @@ onda-artist-kit/
 └── .gitignore
 ```
 
+## Como executar
+
+O Core é 100% estático — basta abrir o `index.html` no navegador. Para servir localmente (recomendado para validar navegação e caminhos):
+
+```bash
+python3 -m http.server 8000
+# ou, com Node.js:
+npx serve .
+```
+
+- Página inicial do site: `index.html`
+- Página de componentes (ferramenta de desenvolvimento): `src/pages/components.html`
+- Decisões técnicas do Core: [`docs/core-arquitetura.md`](docs/core-arquitetura.md)
+
 ## Hospedagem
 
 Como o resultado é um site 100% estático (HTML, CSS e JavaScript), ele pode ser publicado praticamente em qualquer lugar:
@@ -93,7 +107,9 @@ Um dos pilares do projeto é separar a **aparência** do **conteúdo**:
 
 ## Status do projeto
 
-O projeto está em **desenvolvimento inicial**. Nenhum recurso foi implementado até o momento: o foco desta fase é estabelecer a fundação — estrutura de diretórios, documentação, convenções de versionamento e padrões de contribuição. À medida que os recursos forem evoluindo, esta seção será atualizada.
+O projeto está em **desenvolvimento inicial**, avançando por fases. A **Fase 1 — Core do Site** já está implementada: página inicial funcional, componentes base reutilizáveis, CSS modular orientado a tokens (preparado para os Themes) e navegação responsiva e acessível. O conteúdo exibido é demonstrativo — "Banda Exemplo", uma banda fictícia.
+
+Próximas fases planejadas: sistema de conteúdo baseado em JSON, agenda integrada, sistema de Themes e os demais recursos da proposta. As decisões técnicas do Core estão documentadas em [`docs/core-arquitetura.md`](docs/core-arquitetura.md).
 
 ## Contribuição
 
