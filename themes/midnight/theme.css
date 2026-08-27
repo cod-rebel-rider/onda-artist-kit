@@ -1,0 +1,64 @@
+/* ==========================================================================
+   Onda Artist Kit — Theme Midnight
+   theme.css — noturno, tecnológico e atmosférico.
+
+   Identidade própria (não copia marcas existentes). Mantém acesso livre
+   de fontes: a tipografia monoespaçada vem da pilha do sistema, sem
+   downloads externos. Contraste elevado e foco visível preservados.
+   ========================================================================== */
+
+:root {
+  /* Cores — paleta profunda com acentos fosforescentes */
+  --color-bg: #04060c;
+  --color-surface: #0a0f1a;
+  --color-surface-strong: #111a2e;
+  --color-bg-translucent: rgba(4, 6, 12, 0.85);
+  --color-border: #1d2c4d;
+  --color-text: #dce6ff;
+  --color-text-muted: #93a4d0;
+  --color-accent: #0ff;             /* ciano elétrico */
+  --color-accent-hover: #7ff1ff;
+  --color-on-accent: #00131a;
+  --color-accent-2: #7c5cff;        /* violeta magnético */
+
+  /* Brilhos e gradientes — atmosfera noturna */
+  --glow-accent: rgba(0, 240, 255, 0.18);
+  --glow-accent-2: rgba(124, 92, 255, 0.16);
+  --gradient-accent: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+  --gradient-accent-2: linear-gradient(135deg, var(--color-accent-2), var(--color-accent));
+
+  /* Tipografia — monoespaçada, estética digital (sem downloads) */
+  --font-sans: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Consolas, "Liberation Mono", monospace;
+  --font-display: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+
+  /* Formas — contornos vivos, proporções levemente menores */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 999px;
+  --border-width: 1px;
+  --shadow-sm: 0 0 0 1px rgba(0, 240, 255, 0.15);
+  --shadow-md: 0 0 0 1px rgba(124, 92, 255, 0.25), 0 8px 30px rgba(0, 240, 255, 0.08);
+}
+
+/* Detalhes de identidade: títulos em maiúsculas espaçadas + brilhos do hero */
+body {
+  letter-spacing: 0.01em;
+}
+
+:where(h1, h2, h3) {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.hero {
+  background:
+    radial-gradient(46rem 26rem at 85% -10%, var(--glow-accent), transparent 60%),
+    radial-gradient(38rem 24rem at 8% 12%, var(--glow-accent-2), transparent 55%);
+}
+
+.hero__tagline,
+.section__header,
+p {
+  color: var(--color-text-muted);
+}

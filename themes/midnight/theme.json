@@ -1,0 +1,9 @@
+{
+  "id": "midnight",
+  "name": "Midnight",
+  "version": "1.0.0",
+  "description": "Theme noturno, tecnológico e atmosférico, alinhado ao universo da Onda Noturna: fundo escuro profundo, tipografia monoespaçada e brilhos ciano.",
+  "author": "Onda Noturna",
+  "license": "MIT",
+  "themeColor": "#04060c"
+}

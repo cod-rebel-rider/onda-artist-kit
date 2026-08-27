@@ -1,0 +1,9 @@
+{
+  "id": "default",
+  "name": "Default",
+  "version": "1.0.0",
+  "description": "Theme padrão do Onda Artist Kit: visual neutro, equilibrado e acessível. Serve de referência para quem quiser criar novos Themes.",
+  "author": "Onda Noturna",
+  "license": "MIT",
+  "themeColor": "#0e1016"
+}

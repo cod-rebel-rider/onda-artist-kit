@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index">
+    <meta name="description" content="Catálogo de Themes do Onda Artist Kit: Default, Midnight e Brutalist. Visualize e conheça cada identidade visual.">
+    <meta name="theme-color" content="#0e1016">
+    <title>Temas — Onda Artist Kit</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/theme-loader.js" data-base=".." defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#temas-conteudo">Pular para o conteúdo principal</a>
+
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a class="brand" href="../index.html">
+                <span class="brand__logo">
+                    <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+                        <defs>
+                            <linearGradient id="brand-grad" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#8b5cf6"/>
+                                <stop offset="1" stop-color="#22d3ee"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M12 40c6-14 12-14 18 0s12 14 18 0" fill="none" stroke="url(#brand-grad)" stroke-width="7" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span class="brand__name">Onda Artist Kit</span>
+            </a>
+
+            <nav class="site-nav" data-open="false" aria-label="Navegação do catálogo">
+                <ul class="nav__list" role="list">
+                    <li><a class="nav__link" href="../index.html">Início</a></li>
+                    <li><a class="nav__link" href="../release.html">Release</a></li>
+                    <li><a class="nav__link" href="../agenda.html">Agenda</a></li>
+                    <li><a class="nav__link" href="index.html" aria-current="page">Themes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="temas-conteudo" tabindex="-1">
+        <section class="hero hero--compact">
+            <div class="container hero__inner">
+                <p class="hero__eyebrow">Identidade visual</p>
+                <h1>Temas</h1>
+                <p class="hero__tagline">Troque a aparência do site sem mexer no conteúdo nem no Core. Cada Theme controla apenas a apresentação visual.</p>
+            </div>
+        </section>
+
+        <section class="section section--alt" id="catalogo" aria-labelledby="titulo-catalogo">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__eyebrow">Catálogo</p>
+                    <h2 id="titulo-catalogo">Themes disponíveis</h2>
+                    <p>Selecione um tema abaixo para pré-visualizá-lo aplicado a esta página. A escolha real do site é feita em <code>data/site.json</code>.</p>
+                </header>
+                <p class="field__hint" data-theme-label>Pré-visualizando: default</p>
+                <div class="grid grid--3" data-themes-catalog></div>
+            </div>
+        </section>
+
+        <section class="section" id="como-usar" aria-labelledby="titulo-como-usar">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__eyebrow">Como usar</p>
+                    <h2 id="titulo-como-usar">Selecionar um tema</h2>
+                </header>
+                <div class="grid grid--2">
+                    <div>
+                        <p>No arquivo <code>data/site.json</code>, defina a propriedade <code>theme</code> com o id do tema desejado:</p>
+                        <pre><code>{
+  "theme": "midnight"
+}</code></pre>
+                        <p>Recarregue o site. O conteúdo permanece o mesmo; apenas a aparência muda. Valores válidos: <code>default</code>, <code>midnight</code>, <code>brutalist</code>.</p>
+                    </div>
+                    <div>
+                        <p>Se o tema informado não existir ou estiver incompleto, o Onda Artist Kit usa automaticamente o <strong>Theme Default</strong> — o site nunca fica quebrado.</p>
+                        <p>Consulte o <a href="../docs/core-arquitetura.md#themes">Theme Contract</a> para aprender a criar o seu próprio theme.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container site-footer__inner">
+            <p><small>Catálogo de temas do Onda Artist Kit.</small></p>
+            <p><small>Feito com <a href="https://github.com/Onda-Noturna/onda-artist-kit">Onda Artist Kit</a></small></p>
+        </div>
+    </footer>
+
+    <script src="theme-catalog.js" defer></script>
+</body>
+</html>
