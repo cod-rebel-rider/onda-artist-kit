@@ -158,22 +158,35 @@ Ao abrir um Pull Request, procure garantir que ele:
 
 Todos os Pull Requests devem ter como destino a branch `dev`.
 
-## Themes da comunidade
+## Themes
 
-Uma parte importante do projeto é permitir que a comunidade crie e compartilhe seus próprios Themes — conjuntos de estilos que definem a aparência do site de forma independente do conteúdo.
+A comunidade pode criar e compartilhar Themes — conjuntos de estilos que definem a aparência do site independentemente do conteúdo. O sistema de Themes já está implementado no projeto.
 
-> O sistema de Themes ainda **não foi implementado**. A seguir estão apenas os princípios que guiarão o formato definitivo, que será documentado quando os contratos do projeto estiverem definidos. Por isso, **não há instruções técnicas de implementação nesta fase**.
+Para contribuir com um Theme, siga o mesmo fluxo geral de contribuição:
 
-Quando o sistema estiver disponível, os Themes da comunidade deverão:
+1. **Fork** o repositório;
+2. **Atualize a `dev`** (fetch + `git pull --ff-only origin dev`);
+3. **Crie uma branch** a partir da `dev` — ex.: `feat/theme-meu-tema`);
+4. **Crie o Theme** em `themes/meu-tema/` com pelo menos `theme.json` e `theme.css` (veja [`docs/core-arquitetura.md#themes`](docs/core-arquitetura.md#themes));
+5. **Teste** aplicando o tema pelo `data/site.json` em pelo menos Home, Release, Agenda, mobile e impressão;
+6. **Commit** (`feat: adiciona tema X` ou `style: ...`);
+7. **Push** e **Pull Request** para a `dev`.
 
-- respeitar a **estrutura e os contratos definidos pelo projeto**;
-- seguir boas práticas de **acessibilidade**;
-- ser **responsivos** em diferentes tamanhos de tela;
-- manter **compatibilidade com os recursos oficiais** do kit (agenda, release eletrônico, links e presença digital);
-- possuir **licença adequada** e compatível com a licença do projeto;
-- **não conter conteúdo ilegal** nem material incompatível com os valores do projeto.
+### Boas práticas para Themes
 
-O diretório `themes/official` é reservado aos Themes mantidos pela equipe do projeto; o diretório `themes/community` receberá os Themes enviados pela comunidade.
+Os Themes contribuídos devem:
+
+- **funcionar com o Core** e com todos os componentes (header, navegação, botões, cards, ShowCard, footer);
+- usar **CSS Custom Properties** (tokens) sempre que possível, sobrescrevendo os valores definidos em `src/css/variables.css`;
+- fornecer **fallback** e não depender exclusivamente de fontes ou serviços externos;
+- ser **responsivos** em mobile, tablet e desktop;
+- ser **acessíveis**: contraste adequado, foco visível, `prefers-reduced-motion` quando houver animação, status comunicados por texto;
+- respeitar **licenças** e documentar qualquer asset/fonte de terceiros com sua atribuição;
+- **não conter malware, rastreadores ocultos, coleta de dados, redirecionamentos, iframes suspeitos ou dependências externas desnecessárias**;
+
+Themes são tratados como **código de terceiros** e devem ser revisáveis e o mais simples possível (priorize CSS; JavaScript dentro de Themes só se houver real necessidade, devidamente isolado).
+
+> O Theme não deve conter dados do artista (nome, biografia, agenda, links). Esses dados pertencem a `data/`. O Theme fornece apenas a apresentação visual.
 
 ## Código de conduta
 

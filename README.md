@@ -36,7 +36,7 @@ A proposta é oferecer uma base simples, leve e de baixo custo para que qualquer
 | Google Calendar (Fase 5) | Fonte opcional da agenda via calendário público (sem API Key/OAuth) com fallback local | Implementado (opcional) |
 | Release eletrônico (Fase 3) | Página de release com biografia, integrantes, discografia, destaques, contratação e exportação em PDF | Implementado |
 | Links e presença digital | Bloco de links para redes sociais, streaming e contato | Planejado |
-| Sistema de Themes | Aparência separada do conteúdo, com temas oficiais e da comunidade | Planejado |
+| Sistema de Themes (Fase 6) | Aparência separada do conteúdo — seleção por `data/site.json`, temas Default, Midnight e Brutalist, com fallback | Implementado |
 
 ## Estrutura inicial
 
@@ -57,8 +57,11 @@ onda-artist-kit/
 │   └── pages/           # páginas do kit
 │
 ├── themes/
-│   ├── official/        # Themes oficiais do projeto
-│   └── community/       # Themes criados pela comunidade
+│   ├── default/           # Theme padrão (referência) — theme.json + theme.css
+│   ├── midnight/          # Theme noturno/tecnológico
+│   ├── brutalist/         # Theme cru/experimental
+│   ├── index.html         # catálogo de Themes
+│   └── theme-catalog.js
 │
 ├── docs/                # documentação adicional
 │
@@ -84,6 +87,7 @@ npx serve .
 - Página inicial do site: `index.html`
 - Release eletrônico: `release.html` — o botão “Baixar / imprimir release” abre a janela de impressão do navegador (Ctrl+P → “Salvar como PDF”)
 - Agenda de shows: `agenda.html` — próximos shows, histórico, status, ingressos, mapa e “Adicionar ao calendário” (.ics)
+- Catálogo de Themes: `themes/` — pré-visualize os temas disponíveis
 - Página de componentes (ferramenta de desenvolvimento): `src/pages/components.html`
 - Decisões técnicas do Core: [`docs/core-arquitetura.md`](docs/core-arquitetura.md)
 
@@ -235,14 +239,55 @@ O projeto **não fica preso a nenhum provedor**: os arquivos gerados pertencem a
 
 ## Themes
 
-Um dos pilares do projeto é separar a **aparência** do **conteúdo**:
+Um dos pilares do projeto é separar a **aparência** do **conteúdo**. Cada Theme controla apenas a identidade visual; os dados do artista (`data/`) e o funcionamento do Core (`src/`) ficam intactos.
 
-- Todo o material do artista (dados, textos, imagens, agenda, links) fica isolado do visual;
-- A aparência é definida por **Themes**, que podem ser trocados sem afetar o conteúdo;
-- Haverá Themes **oficiais**, mantidos pelo projeto, e Themes **da comunidade**, criados e compartilhados por qualquer pessoa;
-- As diretrizes para criar e enviar Themes constam no [`CONTRIBUTING.md`](CONTRIBUTING.md).
+### Como selecionar um Theme
 
-> O sistema de Themes ainda não foi implementado — nesta fase apenas reservamos a estrutura de diretórios (`themes/official` e `themes/community`) e definimos os princípios que guiarão seu design.
+No arquivo `data/site.json`, defina a propriedade `theme` com o id do tema:
+
+```json
+{ "theme": "midnight" }
+```
+
+Valores válidos incluídos: `default`, `midnight` e `brutalist`. Ao trocar e recarregar o site, a aparência muda — o conteúdo permanece o mesmo. Se o tema informado não existir ou estiver incompleto, o kit usa automaticamente o **Theme Default** (o site nunca quebra).
+
+### Estrutura de um Theme
+
+Cada Theme é uma unidade independente em `themes/<id>/`:
+
+```text
+themes/meu-tema/
+├── theme.json     # manifesto (obrigatório)
+├── theme.css      # estilo (obrigatório)
+└── assets/        # opcional: imagens, fontes, texturas, SVGs do tema
+```
+
+O `theme.json` descreve o tema:
+
+```json
+{
+  "id": "meu-tema",
+  "name": "Meu Tema",
+  "version": "1.0.0",
+  "description": "Descrição curta.",
+  "author": "Seu nome",
+  "license": "MIT",
+  "themeColor": "#0e1016"
+}
+```
+
+O `theme.css` sobrescreve os tokens de design do Core (`src/css/variables.css`) usando CSS Custom Properties — por exemplo `--color-accent`, `--font-display`, `--radius-lg`, `--space-md`. Consulte o **Theme Contract** em [`docs/core-arquitetura.md#themes`](docs/core-arquitetura.md#themes) para a lista completa de variáveis e componentes estilizáveis.
+
+### Assets, fontes e licença
+
+- Assets específicos de um tema ficam **dentro da pasta do tema** (não em `assets/` global);
+- Prefira fontes livres e forneça **fallback** — não dependa exclusivamente de uma fonte externa;
+- Assets/fontes de terceiros exigem documentação de origem e licença compatível com a MIT License do projeto;
+- **O Theme não deve conter dados do artista** (nome, biografia, agenda, links) — eles pertencem a `data/`.
+
+### Contribuindo com Themes
+
+Veja o fluxo completo (fork → branch → criar theme → testar → PR) no [`CONTRIBUTING.md`](CONTRIBUTING.md#themes). O catálogo de temas do projeto fica em [`themes/`](themes/index.html).
 
 ## Status do projeto
 
