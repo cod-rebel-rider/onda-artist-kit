@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Configurador do Onda Artist Kit: crie o site do seu artista sem programar. Escolha um tema, preencha sua agenda, links e dados, gere o site estático e publique gratuitamente.">
+  <meta name="theme-color" content="#0f121a">
+  <title>Onda Artist Kit — Configurador</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="cfg-wrapper">
+    <header class="cfg-header">
+      <div class="container">
+        <a href="../index.html" class="cfg-back" aria-label="Voltar ao site do kit">←</a>
+        <h1>Onda <span class="accent">Artist</span> Kit</h1>
+        <span class="cfg-header-tag" style="color:var(--cfg-text-muted);font-size:0.85rem;">Configurador</span>
+      </div>
+    </header>
+
+    <main class="cfg-main">
+      <div class="cfg-layout">
+
+        <!-- Navegação de etapas (sidebar) -->
+        <aside class="cfg-sidebar" aria-label="Etapas do configurador">
+          <nav aria-label="Progresso">
+            <ul class="cfg-steps" id="cfg-steps-list">
+              <!-- preenchido por ui.js -->
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- Painel de etapas -->
+        <section class="cfg-panel" aria-live="polite" aria-atomic="true">
+          <div id="cfg-step-content">
+            <!-- cada etapa renderizada por ui.js -->
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="cfg-footer">
+      <p>Feito com <a href="https://github.com/Onda-Noturna/onda-artist-kit">Onda Artist Kit</a> · MIT License</p>
+    </footer>
+
+    <div id="cfg-toast" class="cfg-toast" role="alert" aria-live="assertive" hidden></div>
+  </div>
+
+  <script src="js/zip.js"></script>
+  <script src="js/steps.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/exporter.js"></script>
+  <script>
+    // Ordem de carregamento garantida (inline). Inicia após DOM pronto.
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => window.OndaConfigUI && window.OndaConfigUI.init());
+    } else {
+      window.OndaConfigUI && window.OndaConfigUI.init();
+    }
+  </script>
+</body>
+</html>

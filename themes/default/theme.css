@@ -1,0 +1,44 @@
+/* ==========================================================================
+   Onda Artist Kit — Theme Default
+   theme.css — aparência padrão, neutra e equilibrada.
+
+   Este arquivo é o modelo de referência para criação de novos Themes:
+   ele apenas REAPROVECITA (sobrescreve) os tokens de design definidos em
+   src/css/variables.css. O Core e os componentes consomem essas variáveis,
+   então basta mudar os valores aqui para transformar a identidade visual
+   sem tocar em conteúdo (data/) nem no Core (src/).
+   ========================================================================== */
+
+:root {
+  /* Cores */
+  --color-bg: #0e1016;
+  --color-surface: #161b26;
+  --color-surface-strong: #1d2333;
+  --color-bg-translucent: rgba(14, 16, 22, 0.86);
+  --color-border: #2b3247;
+  --color-text: #eceaf3;
+  --color-text-muted: #a5a3b8;
+  --color-accent: #8b5cf6;
+  --color-accent-hover: #a78bfa;
+  --color-on-accent: #ffffff;
+  --color-accent-2: #22d3ee;
+
+  /* Brilhos e gradientes */
+  --glow-accent: rgba(139, 92, 246, 0.22);
+  --glow-accent-2: rgba(34, 211, 238, 0.12);
+  --gradient-accent: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+  --gradient-accent-2: linear-gradient(135deg, var(--color-accent-2), var(--color-accent));
+
+  /* Tipografia */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-sans);
+
+  /* Formas e profundidade */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-full: 999px;
+  --border-width: 1px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.35);
+}

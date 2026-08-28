@@ -1,0 +1,47 @@
+{
+  "title": "Release",
+  "headline": "Release oficial para contratação e imprensa",
+  "presentation": "A Banda Exemplo é um projeto fictício de rock independente de Brasília criado para demonstrar o Onda Artist Kit. Este documento reúne, em um único lugar, o que casas de show, produtores, festivais, imprensa e coletivos precisam saber para conhecer e contratar o projeto.",
+  "biography": [
+    "A Banda Exemplo nasceu em 2024 em uma sala de ensaio no Setor Industrial de Brasília, entre ampladores emprestados e cafeína. O projeto começou como registro caseiro e virou banda de verdade quando as músicas pediram palco.",
+    "Desde então, a banda construiu um repertório autoral que transita entre o rock alternativo e a eletrônica noturna, com apresentações em casas e festivais da capital. Cada show é pensado como uma temporada: luz baixa, volume alto e repertório que evolui a cada passagem de som.",
+    "O próximo passo é a rodada de apresentações de 2026, com datas confirmadas em Brasília e Goiânia. (Biografia demonstrativa — todos os fatos são fictícios.)"
+  ],
+  "highlights": [
+    "Seleção para o palco alternativo do Festival Noite Alta (cenário fictício, edição 2025)",
+    "EP \"Maré Alta\" divulgado em rádios universitárias do Centro-Oeste (ação demonstrativa)",
+    "Residência artística de três meses na Sala Subsolo, em Goiânia (projeto fictício)"
+  ],
+  "experience": "Mais de 40 apresentações em Brasília, Goiânia e São Paulo, em formatos que vão de festivais a casas de show de pequeno porte. A banda já dividiu palco com projetos independentes da cena local e mantém uma residência mensal no Bar Onda, em Brasília. (Informações demonstrativas.)",
+  "discography": [
+    {
+      "title": "Maré Alta",
+      "type": "EP",
+      "year": 2026,
+      "description": "EP de estreia com quatro faixas que definem o som da banda: guitarras secas, sintetizadores frios e letras noturnas.",
+      "cover": null,
+      "links": { "spotify": "https://open.spotify.com/" }
+    },
+    {
+      "title": "Ruído Branco",
+      "type": "Single",
+      "year": 2025,
+      "description": "Single de apresentação da banda, gravado ao vivo em sessão caseira.",
+      "cover": null,
+      "links": { "bandcamp": "https://bandcamp.com/" }
+    },
+    {
+      "title": "Primeira Onda",
+      "type": "Álbum",
+      "year": 2024,
+      "description": "Primeiro álbum, registrado de forma independente entre ensaios e madrugadas de estúdio.",
+      "cover": null,
+      "links": { "youtube": "https://music.youtube.com/" }
+    }
+  ],
+  "booking": {
+    "description": "Para shows, festivais, parcerias e imprensa, fale diretamente com a produção da banda.",
+    "email": "contato@bandaexemplo.com.br",
+    "phone": null
+  }
+}

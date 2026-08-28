@@ -1,0 +1,13 @@
+/* ==========================================================================
+   Onda Artist Kit — Core
+   main.css — ponto de entrada dos estilos.
+   A ordem de importação define a cascata: reset → tokens → base → layout →
+   componentes → impressão. Themes futuros deverão importar após este arquivo.
+   ========================================================================== */
+
+@import url("reset.css");
+@import url("variables.css");
+@import url("base.css");
+@import url("layout.css");
+@import url("components.css");
+@import url("print.css");

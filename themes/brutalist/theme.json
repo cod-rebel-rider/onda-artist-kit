@@ -1,0 +1,9 @@
+{
+  "id": "brutalist",
+  "name": "Brutalist",
+  "version": "1.0.0",
+  "description": "Theme propositalmente cru, tipográfico e experimental: blocos geométricos, cantos retos, bordas marcadas e alto contraste.",
+  "author": "Onda Noturna",
+  "license": "MIT",
+  "themeColor": "#f2efe9"
+}
