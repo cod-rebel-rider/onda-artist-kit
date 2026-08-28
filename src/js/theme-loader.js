@@ -75,7 +75,7 @@
       existing.remove();
     }
     const style = document.createElement("style");
-    style.id = STORAGE_ID;
+    style.id = STYLE_ID;
     style.textContent = css;
     document.head.appendChild(style);
 
