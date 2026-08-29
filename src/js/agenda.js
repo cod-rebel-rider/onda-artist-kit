@@ -34,6 +34,15 @@
     }
   };
 
+  /* Falha de carregamento ≠ agenda vazia. Quando a fonte de dados está
+     indisponível (ex.: agenda aberta via file:// e o navegador bloqueia o
+     fetch), preserva o conteúdo estático de demonstração já presente no
+     HTML: não limpa os containers, não os oculta e não exibe o estado vazio. */
+  const preserveStaticFallback = (error) => {
+    console.warn("[Onda] Agenda indisponível — exibindo conteúdo de demonstração estático.", error);
+    setStatus("");
+  };
+
   const hydrate = async () => {
     setStatus("Carregando agenda...");
 
@@ -41,8 +50,14 @@
     try {
       result = await window.OndaData.getAgenda();
     } catch (error) {
-      console.warn("[Onda] Agenda indisponível.", error);
-      result = { events: [], source: "local", note: "error" };
+      preserveStaticFallback(error);
+      return;
+    }
+
+    /* Defensivo: fontes podem sinalizar indisponibilidade explicitamente. */
+    if (result.note === "error") {
+      preserveStaticFallback(new Error("Fonte de dados indisponível."));
+      return;
     }
 
     const { upcoming, past } = classifyShows(result.events);
@@ -63,8 +78,6 @@
     /* Mensagens amigáveis; detalhes técnicos ficam no console. */
     if (result.note === "fallback") {
       setStatus("Não foi possível carregar a agenda externa — exibindo a agenda local.", { error: true });
-    } else if (result.note === "error") {
-      setStatus("Não foi possível carregar a agenda neste momento.", { error: true });
     } else {
       setStatus("");
     }
@@ -76,7 +89,6 @@
   };
 
   hydrate().catch((error) => {
-    setStatus("Não foi possível carregar a agenda neste momento.", { error: true });
-    console.warn("[Onda] Agenda indisponível — exibindo conteúdo de demonstração estático.", error);
+    preserveStaticFallback(error);
   });
 })();
