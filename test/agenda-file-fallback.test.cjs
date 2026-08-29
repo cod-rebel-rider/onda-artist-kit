@@ -10,7 +10,9 @@
    - fonte carregada com eventos → renderização normal;
    - fonte carregada sem eventos → estado vazio apropriado (e os eventos
      estáticos são substituídos);
-   - fallback externo do Google Calendar continua funcionando.
+   - fallback externo do Google Calendar continua funcionando;
+   - mensagem de fallback (fonte externa indisponível) comunica CORS e
+     orienta para o .ics local.
 
    Mesmo padrão da suíte da Issue #3: Node.js puro, sem dependências, sem
    build. Carrega as IIFEs reais do Core com um DOM mínimo.
@@ -239,6 +241,26 @@ test("Cenário 1d - file:// integral (config e JSONs bloqueados): estáticos pre
   assert(ctx.past.hidden === false, "container de 'passados' foi ocultado indevidamente");
   assert(ctx.empty.hidden === true, "estado 'nenhum show agendado' não deveria ser exibido");
   assert(ctx.pastSection.hidden === false, "seção 'Shows anteriores' não deveria ser ocultada");
+});
+
+/* --------------------------------------------------------------------------
+   Issue — UX do fallback (Google Calendar/CORS): quando a fonte externa
+   falha, a mensagem deve comunicar indisponibilidade, citar CORS como causa
+   possível, deixar claro que a agenda local segue em uso e orientar para o
+   .ics local — sem sugerir que o Google Calendar está quebrado.
+   -------------------------------------------------------------------------- */
+test("Mensagem de fallback explica CORS, mantém a agenda local e orienta para o .ics", async () => {
+  const ctx = await runAgenda({
+    getAgenda: async () => ({ events: [pastShow()], source: "local", note: "fallback" })
+  });
+
+  const msg = String(ctx.status.textContent || ctx.status.innerHTML);
+  assert(ctx.status.hidden === false, "mensagem de fallback deveria ser exibida");
+  assert(msg.includes("não está disponível"), "deveria comunicar que a fonte externa não pôde ser carregada");
+  assert(msg.includes("CORS"), "deveria citar CORS como causa possível do bloqueio");
+  assert(msg.includes("agenda local"), "deveria deixar claro que o fallback local continua em uso");
+  assert(msg.includes(".ics"), "deveria orientar para o .ics local como alternativa");
+  assert(!msg.toLowerCase().includes("quebrado"), "não deveria sugerir que o Google Calendar está quebrado");
 });
 
 /* --------------------------------------------------------------------------

@@ -77,7 +77,7 @@
 
     /* Mensagens amigáveis; detalhes técnicos ficam no console. */
     if (result.note === "fallback") {
-      setStatus("Não foi possível carregar a agenda externa — exibindo a agenda local.", { error: true });
+      setStatus("A leitura direta do calendário externo não está disponível neste ambiente (o navegador pode bloquear por CORS) — exibindo a agenda local. Alternativa mais confiável em hospedagem estática: usar um arquivo .ics dentro do projeto.", { error: true });
     } else {
       setStatus("");
     }
