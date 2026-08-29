@@ -574,6 +574,7 @@
       <ul class="cfg-file-tree">
         <li><strong>index.html</strong>, release.html, agenda.html</li>
         <li><strong>data/</strong> — band.json, release.json, links.json, shows.json, site.json, calendar.json</li>
+        <li><strong>onda-data.js</strong> — seus dados embutidos (fallback do teste local sem servidor)</li>
         <li><strong>src/</strong> — CSS, JS e componentes do Core</li>
         <li><strong>themes/${escapeHTML(themeId)}/</strong> — theme.json + theme.css${themeId !== "default" ? " (+ fallback default)" : ""}</li>
         <li><strong>assets/</strong> — favicon e imagens enviadas</li>

@@ -40,6 +40,14 @@
       const theme = data && typeof data.theme === "string" ? data.theme.trim() : "";
       return ID_RE.test(theme) ? theme : DEFAULT_THEME;
     } catch (error) {
+      /* file:// (fetch bloqueado) ou falha HTTP: usa o snapshot embutido
+         gerado pelo Configurador (onda-data.js), se existir. */
+      const key = withBase("/data/site.json").replace(/^(?:\.\/|\.\.\/)+/, "");
+      const embedded = window.ONDA_DATA && typeof window.ONDA_DATA === "object" ? window.ONDA_DATA[key] : null;
+      const embeddedTheme = embedded && typeof embedded.theme === "string" ? embedded.theme.trim() : "";
+      if (ID_RE.test(embeddedTheme)) {
+        return embeddedTheme;
+      }
       console.warn("[Onda] data/site.json indisponível — usando o Theme default.", error);
       return DEFAULT_THEME;
     }
@@ -112,4 +120,7 @@
   };
 
   boot();
+
+  /* Exposto apenas para testes (a suíte em Node valida o fallback embutido). */
+  window.OndaThemeLoader = { readSiteConfig };
 })();

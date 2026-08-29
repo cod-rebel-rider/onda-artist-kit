@@ -8,20 +8,40 @@
 
    Modelo de funcionamento: as páginas carregam conteúdo estático de
    demonstração como fallback; quando servidas por HTTP, os dados de
-   data/*.json hidratam as seções. Sem servidor (file://), o fetch falha
-   e o fallback estático permanece, com aviso no console.
+   data/*.json hidratam as seções. Sem servidor (file://), o fetch é
+   bloqueado pelo navegador: se houver dados embutidos (window.ONDA_DATA,
+   snapshot gerado pelo Configurador em onda-data.js), eles hidratam as
+   seções com os dados reais do artista; sem dados embutidos, o fallback
+   estático permanece, com aviso no console.
    ========================================================================== */
 
 (() => {
   "use strict";
 
-  /* Carrega um JSON e falha de forma explícita em caso de erro HTTP. */
+  /* Dados embutidos no HTML exportado pelo Configurador (onda-data.js).
+     Publicado por HTTP, data/*.json continua sendo a fonte (editável);
+     sem servidor, o fetch falha e o snapshot embutido assume. */
+  const embeddedData = () =>
+    window.ONDA_DATA && typeof window.ONDA_DATA === "object" ? window.ONDA_DATA : null;
+
+  /* Carrega um JSON e falha de forma explícita em caso de erro HTTP.
+     Quando o fetch é impossível (file://) ou falha, usa o dado embutido
+     correspondente à URL, se existir (clone profundo, sem referências). */
   const loadJSON = async (url) => {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Falha ao carregar ${url} (HTTP ${response.status})`);
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Falha ao carregar ${url} (HTTP ${response.status})`);
+      }
+      return response.json();
+    } catch (error) {
+      const embedded = embeddedData()?.[url];
+      if (embedded === undefined) {
+        throw error;
+      }
+      console.info(`[Onda] ${url} indisponível via fetch — usando dados embutidos do Configurador.`);
+      return JSON.parse(JSON.stringify(embedded));
     }
-    return response.json();
   };
 
   /* Escapa todo texto proveniente dos dados antes de montar HTML. */
