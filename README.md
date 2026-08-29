@@ -218,6 +218,46 @@ Para desativar e voltar ao arquivo local, mude para `"enabled": false` (ou `"mod
 - as duas fontes **nunca são misturadas** (evita shows duplicados);
 - os eventos aparecem nos horários locais de quem visita; eventos sem fuso usam data/hora como cadastrados.
 
+### Google Calendar e CORS
+
+**Um calendário público não significa leitura liberada pelo navegador.** O endereço `.ics` público funciona para assinar o calendário em apps e para abrir direto no navegador, mas isso **não garante** que uma página hospedada em outro domínio consiga ler esse endereço com `fetch()` (JavaScript). O Google pode não enviar as permissões necessárias (*CORS*) e o navegador bloqueia a leitura — é uma política de segurança dos navegadores, **não** um defeito do Google Calendar nem do Onda Artist Kit.
+
+Na prática:
+
+- a integração externa é **opcional** e nunca é requisito: se a leitura for bloqueada (*CORS*, rede ou calendário indisponível), o kit **usa automaticamente a agenda local** (`data/shows.json`) — o site continua funcionando, sem backend, proxy nem API Key;
+- para hospedagem estática (GitHub Pages, Netlify, Vercel etc.), a **solução recomendada** é usar uma **cópia do `.ics` dentro do próprio projeto** — assim o arquivo passa a ser lido do mesmo domínio do site, sem bloqueio de CORS:
+
+  ```text
+  Google Calendar
+        ↓
+  exportar/obter o .ics público
+        ↓
+  data/calendar.ics  (cópia versionada no projeto)
+        ↓
+  Onda Artist Kit (lê do próprio site — sem CORS)
+  ```
+
+  Passo a passo:
+
+  1. abra o endereço `.ics` público (passo 3 de “Como configurar”) no navegador;
+  2. salve o conteúdo como `data/calendar.ics` dentro do projeto;
+  3. em `data/calendar.json`, aponte o `publicUrl` para o arquivo:
+
+     ```json
+     {
+       "enabled": true,
+       "mode": "google",
+       "provider": "google",
+       "calendarId": "",
+       "publicUrl": "data/calendar.ics"
+     }
+     ```
+
+  4. publique o site (ou gere o `.zip` no configurador) normalmente.
+
+- **sem sincronização automática**: o `data/calendar.ics` é uma “fotografia” do calendário — sempre que a agenda mudar, baixe o `.ics` novamente e republique. Em troca, a leitura funciona em qualquer hospedagem estática e não depende do Google no momento da visita;
+- um **proxy** (serviço intermediário que repassa o feed com CORS liberado) poderia contornar essa limitação, mas é apenas uma **possibilidade futura/opcional**: a arquitetura do kit permanece “site estático + dados locais + fallback externo opcional”, sem depender de proxy, backend ou credenciais.
+
 ### Privacidade e limitações
 
 - **Use apenas informações públicas**: qualquer pessoa que abrir o site verá os eventos do calendário;
@@ -225,7 +265,7 @@ Para desativar e voltar ao arquivo local, mude para `"enabled": false` (ou `"mod
 - o kit nunca pede senha, token nem acesso à sua conta — somente o endereço público;
 - mudanças no calendário podem levar alguns minutos para aparecer no site;
 - **eventos recorrentes**: o kit exibe a primeira ocorrência de cada evento repetido (expansão completa ainda não é suportada);
-- alguns navegadores/hospedagens podem bloquear a leitura direta do endereço do Google (técnica chamada *CORS*). Nesse caso o fallback entra em ação sozinho. Alternativa confiável: salve o arquivo `.ics` do Google na pasta `data/` do repositório e use `"publicUrl": "data/calendar.ics"` — o arquivo passa a ser lido do próprio site (atualize-o periodicamente).
+- a leitura do endereço do Google pode ser bloqueada pelo navegador (técnica chamada *CORS*) — veja a seção **Google Calendar e CORS** acima: o fallback local entra sozinho e a alternativa recomendada é o `.ics` dentro do projeto.
 
 ## Hospedagem
 

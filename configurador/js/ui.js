@@ -314,10 +314,11 @@
           <div class="cfg-field">
             <label><input type="checkbox" data-bind="agenda.calendar.enabled"${cal.enabled ? " checked" : ""}> Ativar integração</label>
             <p class="cfg-hint">Quando ativa com fonte "google", o site busca os eventos do calendário público informado.</p>
+            <p class="cfg-hint"><strong>Atenção (CORS):</strong> um calendário público pode ter a leitura direta bloqueada pelo navegador. Nesse caso, o site exibe automaticamente a agenda local — sem API Key e sem backend. Para hospedagem estática, a alternativa recomendada é uma cópia do arquivo .ics dentro do próprio projeto, no campo “URL pública do iCal” abaixo.</p>
           </div>
           <div class="cfg-grid">
             ${field({ label: "ID do calendário", key: "agenda.calendar.calendarId", value: cal.calendarId || "", placeholder: "abc123@group.calendar.google.com" })}
-            ${field({ label: "URL pública do iCal (alternativa)", key: "agenda.calendar.publicUrl", value: cal.publicUrl || "", type: "url", placeholder: "https://calendar.google.com/calendar/ical/…/public/basic.ics" })}
+            ${field({ label: "URL pública do iCal (alternativa)", key: "agenda.calendar.publicUrl", value: cal.publicUrl || "", type: "url", placeholder: "https://calendar.google.com/calendar/ical/…/public/basic.ics", hint: "Recomendado em hospedagem estática: baixe o .ics do Google Calendar, salve uma cópia no projeto (ex.: data/calendar.ics) e aponte para este campo. Atualizar a agenda exige recolocar o arquivo — não há sincronização automática." })}
           </div>
         </fieldset>
 
@@ -547,7 +548,10 @@
     if (s.agenda?.calendar?.mode === "google" && s.agenda?.calendar?.enabled) {
       if (!s.agenda.calendar.calendarId && !s.agenda.calendar.publicUrl) {
         push("block", "Google Calendar ativado sem ID nem URL pública do iCal.");
-      } else push("ok", "Google Calendar configurado (fonte google).");
+      } else {
+        push("ok", "Google Calendar configurado (fonte google).");
+        push("warn", "O feed público do Google pode ter a leitura bloqueada pelo navegador (CORS) — nesse caso o site usa a agenda local automaticamente. Para hospedagem estática, prefira um .ics dentro do projeto (ex.: data/calendar.ics) na URL pública do iCal.");
+      }
     } else push("ok", "Fonte da agenda: lista local de shows.");
 
     const email = s.release?.booking?.email || "";
