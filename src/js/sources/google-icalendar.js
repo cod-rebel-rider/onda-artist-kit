@@ -184,7 +184,11 @@
     }
     const end = content.dtend ? parseIcsDateTime(content.dtend) : null;
     const rawStatus = (content.status ?? "CONFIRMED").toUpperCase();
-    const status = rawStatus === "CANCELED" ? "cancelled" : "confirmed";
+    /* Google Calendar exporta STATUS:CANCELLED (duplo L, conforme RFC 5545).
+       Mantém-se também a grafia CANCELED já aceita pelo parser; qualquer
+       outro valor — inclusive a ausência de STATUS — permanece confirmado. */
+    const status =
+      rawStatus === "CANCELLED" || rawStatus === "CANCELED" ? "cancelled" : "confirmed";
     const location = unescapeText(content.location);
     const event = {
       id: content.uid ? `google-${cleanId(content.uid)}` : `google-${start.date}-${cleanId(content.summary ?? "evento")}`,
